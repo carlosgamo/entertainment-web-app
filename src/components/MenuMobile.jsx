@@ -1,4 +1,4 @@
-import Logo from "./icons/logo";
+import Logo from './icons/Logo'
 import IconNavHome from "./icons/IconNavHome.jsx";
 import IconNavMovies from "./icons/IconNavMovies";
 import IconNavSeries from "./icons/IconNavSeries";
