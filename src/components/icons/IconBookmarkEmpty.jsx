@@ -1,7 +1,4 @@
 const IconBookMarkEmpty = (isBookmarked) => { 
-
-    console.log(isBookmarked.item)
-
     return(
         <svg 
             width="12" 

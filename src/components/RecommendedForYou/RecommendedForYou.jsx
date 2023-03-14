@@ -1,7 +1,6 @@
-import data from '../../data.json';
 import Item from './ItemRecommended';
 
-const RecommendedForYou = () => { 
+const RecommendedForYou = ({data, changeBookmarked}) => { 
     return(
         <>
             <div className='bg-gray-900 pl-4 pr-4'>
@@ -10,11 +9,10 @@ const RecommendedForYou = () => {
                 </div>
                 <div className='ml-2 grid grid-cols-2'>
                     {data.map(item => (
-                        <Item id={item.title} item={item}/>
+                        <Item key={item.title} item={item} changeBookmarked={changeBookmarked}/>
                     ))}
-                </div>
-                
-            </div>       
+                 </div>
+            </div>          
         </>
     )
 };
