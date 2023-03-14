@@ -8,10 +8,10 @@ const SearchBar = ({changeFilter, filter}) => {
                 <IconSearch/> 
                 <div className='pl-4 w-10/12'>
                     <input 
-                        id='search-bar-input'
-                        className='bg-transparent w-full focus:outline-none ' 
+                        id='searchBarInput'
+                        className='bg-transparent w-full focus:outline-none' 
                         placeholder='Search for movies or TV series'
-                        onChange={() => changeFilter(search-bar-input)}
+                        onChange={() => changeFilter(searchBarInput.value)}
                         />
                     
                 </div>

@@ -1,3 +1,4 @@
+import { stringify } from 'postcss'
 import { useState } from 'react'
 import './App.css'
 import MenuMobile from './components/MenuMobile'
@@ -23,9 +24,11 @@ function App() {
       case "isBookmarked":
         return items.filter((items) => items.isBookmarked);
       default:
-        return;
+        // return items.filter((items) => items.title.includes(filter));
+        return items.filter((items) => (items.title.includes(filter)));
     }
   }
+
 
   const changeBookmarked = (title) => {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
@@ -38,7 +41,7 @@ function App() {
         <MenuMobile changeFilter={changeFilter} filter={filter}/>
       </div>
       <div className='search-bar'>
-        <SearchBar data={filteredData()}/>
+        <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/>
       </div>
       {/* <div className='trending'>
         <Trending/>
