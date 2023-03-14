@@ -1,4 +1,4 @@
-const IconNavBookmark = () => { 
+const IconNavBookmark = ({menuSelected}) => { 
     return(
         <svg 
             width="17" 
@@ -12,7 +12,7 @@ const IconNavBookmark = () => {
                 1.49 0 0 1-.694-.542A1.402 1.402 0 0 1 0 
                 18.52V1.481c0-.3.086-.573.258-.82A1.49 
                 1.49 0 0 1 .952.119C1.137.039 1.33 0 1.533 0h13.854Z" 
-                fill="#5A698F"
+                fill={menuSelected === 3 ? "#FFF" : "#5A698F"}
                 className="hover:fill-white"
             />
         </svg>

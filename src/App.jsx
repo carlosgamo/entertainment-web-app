@@ -11,6 +11,8 @@ function App() {
 
   const [items, setItems] = useState(data);
 
+  const [menuSelected, setMenuSelected] = useState(0);
+
   const changeFilter = (filter) => setFilter(filter);
 
   const filteredData = () => {
@@ -24,11 +26,9 @@ function App() {
       case "isBookmarked":
         return items.filter((items) => items.isBookmarked);
       default:
-        // return items.filter((items) => items.title.includes(filter));
         return items.filter((items) => (items.title.includes(filter)));
     }
   }
-
 
   const changeBookmarked = (title) => {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
@@ -38,13 +38,15 @@ function App() {
   return (
     <>
       <div>
-        <MenuMobile changeFilter={changeFilter} filter={filter}/>
+        <MenuMobile 
+          changeFilter={changeFilter} filter={filter} 
+          menuSelected={menuSelected} setMenuSelected={setMenuSelected}/>
       </div>
       <div className='search-bar'>
         <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/>
       </div>
       {/* <div className='trending'>
-        <Trending/>
+        <Trending menuSelected={menuSelected}/>
       </div> */}
       <div className='recommended-for-you'>
         <RecommendedForYou 
