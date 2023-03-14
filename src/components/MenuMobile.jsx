@@ -33,7 +33,7 @@ const MenuMobile = ({changeFilter, filter}) => {
                         <IconNavBookmark/>
                     </div>
                     <div className="w-10 h-10 rounded-full border-2 ml-6 -mt-2">
-                        <img src="src\assets\image-avatar.png"/>
+                        <img src="./assets/image-avatar.png"/>
                     </div>
                 </div>
                 
