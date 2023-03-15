@@ -22,7 +22,6 @@ function App() {
   const filteredData = () => {
     switch (filter) {
       case "all":
-        console.log(searchValue);
         return items.filter((items) => items.title.toLowerCase().includes(searchValue.toLowerCase()));
         // return items;
       case "Movie":
