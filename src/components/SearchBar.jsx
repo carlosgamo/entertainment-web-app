@@ -1,6 +1,6 @@
 import IconSearch from './icons/IconSearch';
 
-const SearchBar = ({changeFilter, filter}) => { 
+const SearchBar = ({changeSearch}) => { 
     return(
         <>
             <div id="search-bar" className="bg-gray-900 text-lg 
@@ -11,7 +11,7 @@ const SearchBar = ({changeFilter, filter}) => {
                         id='searchBarInput'
                         className='bg-transparent w-full focus:outline-none' 
                         placeholder='Search for movies or TV series'
-                        onChange={() => changeFilter(searchBarInput.value)}
+                        onChange={() => changeSearch(searchBarInput.value.trim())}
                         />
                     
                 </div>
