@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import IconSearch from './icons/IconSearch';
 
 const SearchBar = ({filteredData, changeSearch, searchCounter}) => { 
+
+    
+
     return(
         <>
             <div id="search-bar" className="bg-gray-900 text-lg 
@@ -13,11 +17,11 @@ const SearchBar = ({filteredData, changeSearch, searchCounter}) => {
                         placeholder='Search for movies or TV series'
                         onChange={() => changeSearch(searchBarInput.value.trim())}
                         />
-                    <div className=''>
-                        {searchBarInput.value.trim() != "" 
-                        ? ("Found "+ filteredData + " results.") 
-                        : ""}
-                    </div>
+                    {/* <div className=''>
+                        {searchBarInput.value.trim() !== ""
+                            ? ("Found "+ filteredData + " results.")
+                            : ""}
+                    </div> */}
                 </div>
             </div>
         </>
