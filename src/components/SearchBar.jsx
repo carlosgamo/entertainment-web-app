@@ -1,10 +1,10 @@
 import IconSearch from './icons/IconSearch';
 
-const SearchBar = ({changeSearch}) => { 
+const SearchBar = ({filteredData, changeSearch, searchCounter}) => { 
     return(
         <>
             <div id="search-bar" className="bg-gray-900 text-lg 
-            h-16 flex pt-4 pl-6 w-full text-gray-500">
+            h-16 flex pt-4 pl-6 w-full text-gray-300">
                 <IconSearch/> 
                 <div className='pl-4 w-10/12'>
                     <input 
@@ -13,7 +13,11 @@ const SearchBar = ({changeSearch}) => {
                         placeholder='Search for movies or TV series'
                         onChange={() => changeSearch(searchBarInput.value.trim())}
                         />
-                    
+                    <div className=''>
+                        {searchBarInput.value.trim() != "" 
+                        ? ("Found "+ filteredData + " results.") 
+                        : ""}
+                    </div>
                 </div>
             </div>
         </>

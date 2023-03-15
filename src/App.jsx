@@ -11,6 +11,8 @@ function App() {
 
   const [searchValue, setSearchValue] = useState("");
 
+  const [searchCounter, setSearchCounter] = useState(0);
+
   const [items, setItems] = useState(data);
 
   const [menuSelected, setMenuSelected] = useState(0);
@@ -23,7 +25,6 @@ function App() {
     switch (filter) {
       case "all":
         return items.filter((items) => items.title.toLowerCase().includes(searchValue.toLowerCase()));
-        // return items;
       case "Movie":
         return items.filter((items) => items.category === "Movie" && items.title.includes(searchValue));
       case "TV Series":
@@ -34,22 +35,6 @@ function App() {
         return;
     }
   }
-
-  // const searchFilter = (searchValue) => {
-  //     switch (filter) {
-  //       case value:
-  //         case "all":
-  //           return items;
-  //         case "Movie":
-  //           return items.filter((items) => items.category === "Movie");
-  //         case "TV Series":
-  //           return items.filter((items) => items.category === "TV Series");
-  //         case "isBookmarked":
-  //           return items.filter((items) => items.isBookmarked);
-  //         default:
-  //           return items.filter((items) => (items.title.includes(filter)));
-  //     }
-  // }
 
   const changeBookmarked = (title) => {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
@@ -65,7 +50,7 @@ function App() {
       </div>
       <div className='search-bar'>
         {/* <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/> */}
-        <SearchBar data={filteredData()} changeSearch={changeSearch}/>
+        <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
       </div>
       {/* <div className='trending'>
         <Trending/>

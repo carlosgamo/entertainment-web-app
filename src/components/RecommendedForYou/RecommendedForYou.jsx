@@ -1,6 +1,6 @@
 import Item from './ItemRecommended';
 
-const RecommendedForYou = ({data, changeBookmarked}) => { 
+const RecommendedForYou = ({data, changeBookmarked,searchCounter, setSearchCounter}) => { 
     return(
         <>
             <div className='bg-gray-900 pl-4 pr-4'>
@@ -11,6 +11,7 @@ const RecommendedForYou = ({data, changeBookmarked}) => {
                     {data.map(item => (
                         <Item key={item.title} item={item} changeBookmarked={changeBookmarked}/>
                     ))}
+                    
                  </div>
             </div>          
         </>
