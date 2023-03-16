@@ -1,0 +1,54 @@
+@tailwind components;
+
+.menu{
+    @apply
+    bg-slate-800
+    h-14
+}
+
+.nav-bar{
+    @apply
+    flex self-center ml-32 -mt-6
+}
+
+.logo{
+    @apply
+    pt-4 pl-6
+}
+
+.nav-icon{
+    @apply
+    mr-10
+}
+
+.nav-avatar{
+    @apply
+    w-10 h-10 rounded-full border-2 ml-6 -mt-2
+}
+
+@media only screen and (min-width: 500px) {
+    .menu {
+        @apply
+        w-20 h-auto
+        m-4
+        rounded-2xl
+        fixed
+    }
+
+    .nav-bar{
+        @apply
+        grid grid-cols-1
+        ml-8 mt-4
+    }
+
+    .nav-icon{
+        @apply
+        mt-8
+    }
+
+    .nav-avatar{
+        @apply
+        /* absolute bottom-10 */
+        -ml-3 mt-36 mb-4
+    }
+}

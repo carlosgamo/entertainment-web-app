@@ -1,0 +1,47 @@
+@tailwind components;
+
+.recommended-display{
+    @apply ml-2 grid grid-cols-2
+}
+
+@media only screen and (min-width: 600px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-3
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-4
+    }
+}
+
+@media only screen and (min-width: 950px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-5
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-6
+    }
+}
+
+@media only screen and (min-width: 1250px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-7
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-8
+    }
+}

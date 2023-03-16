@@ -3,9 +3,9 @@ import IconBookMarkEmpty from '../icons/IconBookmarkEmpty.jsx';
 const Item = ({item}) => { 
     return (
         <>
-            <div className="border-white boder-2 rounded-md text-gray-400 pt-2 pb-4">
-                <img className="rounded-lg" src={"src/"+item.thumbnail.trending.large} width="250"/>
-                <div className='bg-black rounded-full opacity-50 w-7 h-7 relative -top-28 -right-52 pl-2 pt-2'>
+            <div className="item-trending-container">
+                <img className="rounded-lg" src={item.thumbnail.trending.large} width="250"/>
+                <div className='icon-bookmark-trending'>
                     <IconBookMarkEmpty item={item.isTrending}/>
                 </div>
                 <div className="text-xs -mt-20 pl-4">

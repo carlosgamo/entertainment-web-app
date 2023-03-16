@@ -3,12 +3,10 @@ import IconSearch from './icons/IconSearch';
 
 const SearchBar = ({filteredData, changeSearch, searchCounter}) => { 
 
-    
-
     return(
         <>
             <div id="search-bar" className="bg-gray-900 text-lg 
-            h-16 flex pt-4 pl-6 w-full text-gray-300">
+            h-16 flex pt-6 pl-6 w-full text-gray-300">
                 <IconSearch/> 
                 <div className='pl-4 w-10/12'>
                     <input 

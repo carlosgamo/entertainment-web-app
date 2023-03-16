@@ -1,0 +1,21 @@
+@tailwind components;
+
+.item-trending-container{
+    @apply
+    w-64 h-24 ml-4 mr-4
+    rounded-md text-gray-400
+}
+
+.trending-display{
+    @apply
+    ml-2 flex
+}
+
+.icon-bookmark-trending{
+    @apply
+    bg-black rounded-full opacity-50 w-7 h-7 relative -top-16 -right-32 pl-2 pt-2
+}
+
+@media only screen and (min-width: 500px) {
+
+}

@@ -1,7 +1,8 @@
 import { stringify } from 'postcss'
 import { useState } from 'react'
 import './App.css'
-import MenuMobile from './components/MenuMobile'
+import Menu from './components/Menu/Menu'
+import Trending from './components/Trending/Trending'
 import RecommendedForYou from './components/RecommendedForYou/RecommendedForYou'
 import SearchBar from './components/SearchBar'
 import data from './data.json';
@@ -40,27 +41,30 @@ function App() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
-
   return (
     <>
-      <div>
-        <MenuMobile 
+    <div className='app-container'>
+      <div className='app-menu'>
+        <Menu 
           changeFilter={changeFilter} filter={filter} 
           menuSelected={menuSelected} setMenuSelected={setMenuSelected}/>
       </div>
-      <div className='search-bar'>
-        {/* <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/> */}
-        <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
+      <div className='main-app'>
+        <div className='search-bar'>
+          {/* <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/> */}
+          <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
+        </div>
+        {/* <div className='trending'>
+          <Trending/>
+        </div> */}
+        <div className='recommended-for-you'>
+          <RecommendedForYou 
+            data={filteredData()} 
+            changeBookmarked={changeBookmarked}
+          />
+        </div>
       </div>
-      {/* <div className='trending'>
-        <Trending/>
-      </div> */}
-      <div className='recommended-for-you'>
-        <RecommendedForYou 
-          data={filteredData()} 
-          changeBookmarked={changeBookmarked}
-        />
-      </div>
+    </div>
     </>
   )
 }
