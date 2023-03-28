@@ -1,13 +1,14 @@
 import IconBookMarkEmpty from '../icons/IconBookmarkEmpty.jsx';
 import IconPlay from '../icons/IconPlay';
+import './Recommended.css';
 
 const Item = ({item, changeBookmarked}) => { 
     return (
         <>
-            <div className="border-white boder-2 rounded-md text-gray-400 
-                w-40 h-40 pl-1.5 pt-2 mb-2">
-                <img className="rounded-lg" src={item.thumbnail.regular.small} width="150"/>
-                <div className='bg-black rounded-full opacity-50 w-7 h-7 relative -top-24 -right-28 pl-2 pt-2'
+            <div className="item-recommended">
+                <img className="rounded-lg" src={item.thumbnail.regular.small}/>
+                <div className='bg-black rounded-full opacity-50 w-7 h-7 
+                                relative -top-28 -right-36 pl-2 pt-2'
                     onClick={()=> changeBookmarked(item.title)}
                 >
                     <IconBookMarkEmpty item={item.isBookmarked}/>

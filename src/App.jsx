@@ -54,9 +54,9 @@ function App() {
           {/* <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/> */}
           <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
         </div>
-        {/* <div className='trending'>
-          <Trending/>
-        </div> */}
+        <div className='trending'>
+          <Trending data={data}/>
+        </div>
         <div className='recommended-for-you'>
           <RecommendedForYou 
             data={filteredData()} 

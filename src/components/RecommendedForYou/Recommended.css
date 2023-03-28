@@ -1,12 +1,21 @@
 @tailwind components;
 
 .recommended-display{
-    @apply ml-2 grid grid-cols-2
+    @apply grid 
+    grid-cols-2
+    ml-2
+}
+
+.item-recommended{
+    @apply
+    rounded-md 
+    text-gray-400 
+    w-44
 }
 
 @media only screen and (min-width: 600px) {
     .recommended-display{
-        @apply grid 
+        @apply grid
         grid-cols-3
     }
 }
