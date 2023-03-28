@@ -10,7 +10,7 @@
     @apply
     rounded-md 
     text-gray-400 
-    w-44
+    w-40
 }
 
 @media only screen and (min-width: 600px) {

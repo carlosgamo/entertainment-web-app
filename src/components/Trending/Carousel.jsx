@@ -48,7 +48,7 @@ const Carousel = ({data}) => {
   }, []);
 
   return (
-    <div className="carousel pl-2 mr-2">
+    <div className="carousel pl-2 pr-2">
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
           <button
