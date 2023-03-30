@@ -53,7 +53,8 @@ function App() {
     // }
   }, []);
 
-  if (!authenticated) {
+  // DISABLED DURING DEVELOPMENT (!authenticated)
+  if (authenticated) {
       return(
         <>
           <Login/>
