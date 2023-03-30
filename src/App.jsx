@@ -53,14 +53,14 @@ function App() {
     // }
   }, []);
 
-  // DISABLED DURING DEVELOPMENT (!authenticated)
-  if (authenticated) {
-      return(
-        <>
-          <Login/>
-        </> 
-      )
-    } else {
+  // DISABLED DURING DEVELOPMENT
+  // if (!authenticated) {
+  //     return(
+  //       <>
+  //         <Login/>
+  //       </> 
+  //     )
+  //   } else {
       return(
         <>
           <div className='app-container'>
@@ -90,6 +90,6 @@ function App() {
         </>
       );
     }
-}
+// }
 
 export default App
