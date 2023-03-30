@@ -4,12 +4,21 @@ import IconNavMovies from "../icons/IconNavMovies";
 import IconNavSeries from "../icons/IconNavSeries";
 import IconNavBookmark from "../icons/IconNavBookmark";
 import '../Menu/Menu.css'
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import Logout from '../../Logout';
 
-const MenuMobile = ({changeFilter, menuSelected, setMenuSelected}) => { 
+
+const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, authenticated, setAuthenticated}) => { 
 
     function handleClick(number, filter){
         setMenuSelected(number)
         changeFilter(filter)
+    }
+
+    const onLogoutSuccess = (res) => {
+        setAuthenticated(false);
+        localStorage.setItem("authenticated", false);
+        console.log("Log Out successfull!");
     }
     
 
@@ -44,6 +53,10 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected}) => {
                     <div className="nav-avatar">
                         <img src="./assets/image-avatar.png"/>
                     </div>
+                    <Logout 
+                        authenticated={authenticated} 
+                        setAuthenticated={setAuthenticated}
+                    />
                 </div>
                 
             </div>

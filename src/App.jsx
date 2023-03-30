@@ -1,11 +1,12 @@
 import { stringify } from 'postcss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Menu from './components/Menu/Menu'
 import Trending from './components/Trending/Trending'
 import RecommendedForYou from './components/RecommendedForYou/RecommendedForYou'
 import SearchBar from './components/SearchBar'
 import data from './data.json';
+import Login from './Login'
 
 function App() {
   const [filter, setFilter] = useState("all"); 
@@ -41,32 +42,53 @@ function App() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
-  return (
-    <>
-    <div className='app-container'>
-      <div className='app-menu'>
-        <Menu 
-          changeFilter={changeFilter} filter={filter} 
-          menuSelected={menuSelected} setMenuSelected={setMenuSelected}/>
-      </div>
-      <div className='main-app'>
-        <div className='search-bar'>
-          {/* <SearchBar data={filteredData()} changeFilter={changeFilter} filter={filter}/> */}
-          <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
-        </div>
-        <div className='trending'>
-          <Trending data={data}/>
-        </div>
-        <div className='recommended-for-you'>
-          <RecommendedForYou 
-            data={filteredData()} 
-            changeBookmarked={changeBookmarked}
-          />
-        </div>
-      </div>
-    </div>
-    </>
-  )
+  const loggedInUser = localStorage.getItem("authenticated");
+
+  const [authenticated, setAuthenticated] = useState(loggedInUser);
+  
+  useEffect(() => {
+    console.log(authenticated)
+    // if (loggedInUser) {
+    //   setAuthenticated(loggedInUser);
+    // }
+  }, []);
+
+  if (!authenticated) {
+      return(
+        <>
+          <Login/>
+        </> 
+      )
+    } else {
+      return(
+        <>
+          <div className='app-container'>
+            {/* var accessToken = gapi.auth.getToken().access_token; */}
+            <div className='app-menu'>
+              <Menu 
+                changeFilter={changeFilter} filter={filter} 
+                menuSelected={menuSelected} setMenuSelected={setMenuSelected}
+                authenticated={authenticated} setAuthenticated={setAuthenticated}
+              />
+            </div>
+            <div className='main-app'>
+              <div className='search-bar'>
+                <SearchBar filteredData={filteredData().length} changeSearch={changeSearch} searchCounter={searchCounter}/>
+              </div>
+              <div className='trending'>
+                <Trending data={data}/>
+              </div>
+              <div className='recommended-for-you'>
+                <RecommendedForYou 
+                  data={filteredData()} 
+                  changeBookmarked={changeBookmarked}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      );
+    }
 }
 
 export default App
