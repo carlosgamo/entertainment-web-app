@@ -3,18 +3,15 @@ import { useState } from 'react';
 
 const clientId = "123653857855-iigr6rqj9tpgvqr533sja0tg2pm2pppd.apps.googleusercontent.com"; 
 
-function Login() {
+function Login({}) {
 
-    const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
+    // const [authenticated, setAuthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
 
     const onSuccess = (res) => {
-        setAuthenticated(true);
-        localStorage.setItem("authenticated", true);
-        console.log("LOGIN SUCCESSFULL! res: ", res.id);
-        window.location.reload(false);
+        console.log("LOGIN SUCCESSFULL! res: ", res);
     }
 
-    const onFailure = (res) => {
+    const onError = (res) => {
         console.log("LOGIN FAILED! res: ", res);
     }
     
@@ -30,7 +27,7 @@ function Login() {
                             clientId={clientId}
                             buttonText="Login"
                             onSuccess={onSuccess}
-                            onFailure={onFailure}
+                            onError={onError}
                             cookiePolicy={'single_host_origin'}
                             isSignedIn={true}
                             />

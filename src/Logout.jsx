@@ -8,6 +8,7 @@ function Logout({authenticated, setAuthenticated}) {
                 onClick={() => {
                     setAuthenticated(false);
                     localStorage.setItem("authenticated", false);
+                    setProfile(null);
                 }}
         >
             Logout

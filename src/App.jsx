@@ -6,7 +6,9 @@ import Trending from './components/Trending/Trending'
 import RecommendedForYou from './components/RecommendedForYou/RecommendedForYou'
 import SearchBar from './components/SearchBar'
 import data from './data.json';
-import Login from './Login'
+
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 function App() {
   const [filter, setFilter] = useState("all"); 
@@ -42,34 +44,48 @@ function App() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
-  const loggedInUser = localStorage.getItem("authenticated");
+  const [ user, setUser ] = useState(null);
+  const [ profile, setProfile ] = useState([]);
 
-  const [authenticated, setAuthenticated] = useState(loggedInUser);
-  
-  useEffect(() => {
-    console.log(authenticated)
-    // if (loggedInUser) {
-    //   setAuthenticated(loggedInUser);
-    // }
-  }, []);
+  const login = useGoogleLogin({
+      onSuccess: (codeResponse) => setUser(codeResponse),
+      onError: (error) => console.log('Login Failed:', error)
+  });
 
-  // DISABLED DURING DEVELOPMENT
-  // if (!authenticated) {
-  //     return(
-  //       <>
-  //         <Login/>
-  //       </> 
-  //     )
-  //   } else {
+  useEffect(
+      () => {
+          if (user) {
+              axios
+                  .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                      headers: {
+                          Authorization: `Bearer ${user.access_token}`,
+                          Accept: 'application/json'
+                      }
+                  })
+                  .then((res) => {
+                      setProfile(res.data);
+                  })
+                  .catch((err) => console.log(err.message));
+          }
+      },
+      [ user ]
+  );
+
+  const logOut = () => {
+      googleLogout();
+      setProfile(null);
+  };
+
       return(
         <>
+        {profile ? (
           <div className='app-container'>
-            {/* var accessToken = gapi.auth.getToken().access_token; */}
             <div className='app-menu'>
               <Menu 
                 changeFilter={changeFilter} filter={filter} 
                 menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-                authenticated={authenticated} setAuthenticated={setAuthenticated}
+                profile={profile}
+                logOut={logOut}
               />
             </div>
             <div className='main-app'>
@@ -87,9 +103,10 @@ function App() {
               </div>
             </div>
           </div>
+            ) : (
+              <button className='text-white font-bold text-xl mt-10 ml-10 border-2 rounded-md p-4 hover:bg-slate-300 hover:text-slate-700' onClick={() => login()}>Sign in with Google 🚀 </button>
+            )}
         </>
-      );
-    }
-// }
-
+      )
+  }
 export default App
