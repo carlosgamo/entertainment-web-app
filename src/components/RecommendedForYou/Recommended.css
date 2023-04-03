@@ -17,6 +17,12 @@
     .recommended-display{
         @apply grid
         grid-cols-3
+        mr-20
+    }
+
+    .item-recommended{
+        @apply
+        mr-2
     }
 }
 
@@ -52,5 +58,12 @@
     .recommended-display{
         @apply grid 
         grid-cols-8
+    }
+}
+
+@media only screen and (min-width: 1650px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-9
     }
 }

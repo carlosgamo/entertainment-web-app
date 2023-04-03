@@ -1,4 +1,3 @@
-import { stringify } from 'postcss'
 import { useEffect, useState } from 'react'
 import './App.css'
 import Menu from './components/Menu/Menu'
@@ -111,7 +110,7 @@ function App() {
             </div>
           </div>
             ) : (
-              <button className='text-white font-bold text-xl mt-10 ml-10 border-2 rounded-md p-4 hover:bg-slate-300 hover:text-slate-700' onClick={() => login()}>Sign in with Google 🚀 </button>
+              <button className="login-button" onClick={() => login()}>Sign in with Google 🚀 </button>
             )}
         </>
       )

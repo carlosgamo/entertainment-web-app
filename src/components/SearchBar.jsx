@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import IconSearch from './icons/IconSearch';
 
 const SearchBar = ({changeSearch}) => { 
@@ -15,11 +14,6 @@ const SearchBar = ({changeSearch}) => {
                         placeholder='Search for movies or TV series'
                         onChange={() => changeSearch(searchBarInput.value.trim())}
                         />
-                    {/* <div className=''>
-                        {searchBarInput.value.trim() !== ""
-                            ? ("Found "+ filteredData + " results.")
-                            : ""}
-                    </div> */}
                 </div>
             </div>
         </>

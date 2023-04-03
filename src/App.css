@@ -5,6 +5,15 @@
 body{
     @apply
     bg-slate-900
+    overflow-x-hidden
+}
+
+.login-button{
+    @apply
+    text-white font-bold text-xl 
+    mt-10 ml-10 
+    border-2 rounded-md p-4 
+    hover:bg-slate-300 hover:text-slate-700
 }
 
 @media only screen and (max-width: 500px) {
@@ -31,6 +40,7 @@ body{
     .main-app{
         @apply
         absolute top-0 left-24
+        overflow-hidden
         min-h-screen
         max-w-full
     }
@@ -38,5 +48,6 @@ body{
     .search-bar{
         @apply
         w-full
+        overflow-hidden
     }
 }

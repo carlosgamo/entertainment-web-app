@@ -11,8 +11,33 @@
     flex-shrink-0
     ml-4
     rounded-md text-gray-400
-    w-80
-    h-40
+    relative
+    w-64
+    h-36
+}
+
+.trending-title{
+    @apply
+    text-gray-300 text-xl pt-4 mb-4 ml-6
+}
+
+.item-trending-title{
+    @apply
+    absolute bottom-2 left-4
+    text-gray-200 text-lg
+}
+
+.item-trending-info{
+    @apply
+    text-xs text-gray-300 
+    absolute bottom-8 left-4
+}
+
+.item-trending-rating{
+    @apply
+    text-white text-opacity-70 font-medium flex justify-center
+    bg-white bg-opacity-20 rounded-full w-8 h-6 
+    absolute bottom-2 right-4
 }
 
 .item-trending-image{
@@ -24,7 +49,7 @@
 
 .icon-bookmark-trending{
     @apply
-    bg-black rounded-full opacity-50 w-7 h-7 relative bottom-36 right-16 pl-2 pt-2
+    bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2 pt-2
 }
 
 /* @media only screen and (max-width: 500px) {

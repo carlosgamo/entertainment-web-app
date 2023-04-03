@@ -9,16 +9,13 @@ const Item = ({item}) => {
                 <div className='icon-bookmark-trending'>
                     <IconBookMarkEmpty item={item.isTrending}/>
                 </div>
-                <div className="text-xs text-gray-300 -mt-20 pl-4">
-                    {item.year} - {item.category} 
-                    <div className="text-gray-200 text-lg">{item.title}</div>
-                    <div className='bg-white bg-opacity-20 rounded-full w-8 h-6 relative bottom-10 -right-44 '>
-                        <div className='text-white text-opacity-70 font-semibold flex justify-center pt-1'>
+                    <div className="item-trending-info">{item.year} - {item.category}</div>
+                    <div className="item-trending-title">{item.title}</div>
+                    <div className='item-trending-rating'>
                             {item.rating}
-                        </div>
                     </div>
                     
-                </div>
+                
             </div>
         </>
     )
