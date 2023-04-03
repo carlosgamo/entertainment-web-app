@@ -1,4 +1,4 @@
-import Item from './ItemRecommended';
+import ItemRecommended from './ItemRecommended';
 import './Recommended.css'
 
 const RecommendedForYou = ({data, changeBookmarked}) => { 
@@ -10,9 +10,8 @@ const RecommendedForYou = ({data, changeBookmarked}) => {
                 </div>
                 <div className='recommended-display'>
                     {data.map(item => (
-                        <Item key={item.title} item={item} changeBookmarked={changeBookmarked}/>
+                        <ItemRecommended key={item.title} item={item} changeBookmarked={changeBookmarked}/>
                     ))}
-                    
                  </div>
             </div>          
         </>

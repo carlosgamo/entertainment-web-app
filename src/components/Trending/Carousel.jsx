@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import ItemTrending from './ItemTrending';
 
-const Carousel = ({data}) => {
+const Carousel = ({data, changeBookmarked}) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -39,7 +39,8 @@ const Carousel = ({data}) => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current.scrollLeft = carousel.current.offsetWidth * currentIndex;
     }
-  }, [currentIndex]);
+  });
+  //   }, [currentIndex]);
 
   useEffect(() => {
     maxScrollWidth.current = carousel.current
@@ -99,7 +100,7 @@ const Carousel = ({data}) => {
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
             {data.filter(trend => trend.isTrending).map(item =>(
-                <ItemTrending id={item.title} item={item}/>
+                <ItemTrending id={item.title} item={item} changeBookmarked={changeBookmarked}/>
             ))}
         </div>
       </div>

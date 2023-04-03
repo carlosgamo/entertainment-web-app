@@ -2,7 +2,7 @@ import IconBookMarkEmpty from '../icons/IconBookmarkEmpty.jsx';
 import IconPlay from '../icons/IconPlay';
 import './Recommended.css';
 
-const Item = ({item, changeBookmarked}) => { 
+const ItemRecommended = ({item, changeBookmarked}) => { 
     return (
         <>
             <div className="item-recommended">
@@ -11,7 +11,7 @@ const Item = ({item, changeBookmarked}) => {
                                 relative -top-24 -right-28 pl-2 pt-2'
                     onClick={()=> changeBookmarked(item.title)}
                 >
-                    <IconBookMarkEmpty item={item.isBookmarked}/>
+                    <IconBookMarkEmpty item={item}/>
                 </div>
                 <div className="text-xs -mt-6">
                     {item.year} - {item.category} - {item.rating}
@@ -27,4 +27,4 @@ const Item = ({item, changeBookmarked}) => {
     )
  };
 
- export default Item;
+ export default ItemRecommended;

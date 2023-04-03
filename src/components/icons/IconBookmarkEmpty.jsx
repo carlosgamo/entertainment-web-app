@@ -1,4 +1,4 @@
-const IconBookMarkEmpty = (isBookmarked) => { 
+const IconBookMarkEmpty = ({item}) => { 
     return(
         <svg 
             width="12" 
@@ -11,7 +11,7 @@ const IconBookMarkEmpty = (isBookmarked) => {
                 stroke="#FFF" 
                 strokeWidth="1.5" 
                 className="hover:fill-white opacity-100"
-                fill={isBookmarked.item === true ? "#fff" : "none"}
+                fill={item.isBookmarked === true ? "#fff" : "none"}
             />
         </svg>
     )

@@ -3,7 +3,8 @@
 .recommended-display{
     @apply grid 
     grid-cols-2
-    ml-2
+    ml-2 mr-4
+    w-11/12
 }
 
 .item-recommended{

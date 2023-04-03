@@ -1,7 +1,7 @@
 import Carousel from './Carousel';
 import './Trending.css';
 
-const Trending = ({data}) => { 
+const Trending = ({data, changeBookmarked}) => { 
     return(
         <>
             <div className='trending-container'>
@@ -9,7 +9,7 @@ const Trending = ({data}) => {
                     Trending  
                 </div>
                 
-                <Carousel data={data}/>                
+                <Carousel data={data} changeBookmarked={changeBookmarked}/>                
             </div>       
         </>
     )

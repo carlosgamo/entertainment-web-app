@@ -2,8 +2,8 @@
 
 .trending-container{
     @apply
-    ml-2 pr-4 
-    w-full
+    ml-2
+    w-11/12
 }
 
 .item-trending-container{
@@ -49,7 +49,7 @@
 
 .icon-bookmark-trending{
     @apply
-    bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2 pt-2
+    bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2
 }
 
 /* @media only screen and (max-width: 500px) {
