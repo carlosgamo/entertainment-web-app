@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import IconSearch from './icons/IconSearch';
 
-const SearchBar = ({filteredData, changeSearch, searchCounter}) => { 
+const SearchBar = ({changeSearch}) => { 
 
     return(
         <>

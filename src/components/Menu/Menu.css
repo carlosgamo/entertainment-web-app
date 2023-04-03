@@ -13,6 +13,7 @@
 
 .logo{
     @apply
+    flex
     pt-4 pl-6
 }
 
@@ -61,6 +62,12 @@
     .nav-icon{
         @apply
         mt-8
+    }
+
+    .logo{
+        @apply
+        flex
+        pt-6 pl-6
     }
 
     .nav-avatar{

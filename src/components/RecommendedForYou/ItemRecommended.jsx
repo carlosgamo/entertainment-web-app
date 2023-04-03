@@ -18,7 +18,7 @@ const Item = ({item, changeBookmarked}) => {
                     <div className="text-gray-200 text-base">{item.title}</div>
                 </div>
                 <div id='icon-play-overlay' 
-                     className='relative -top-24 left-14 
+                     className='relative -top-28 left-16 
                                 opacity-0 hover:opacity-60'>
                     <IconPlay/>
                 </div>

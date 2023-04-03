@@ -1,7 +1,7 @@
 import Item from './ItemRecommended';
 import './Recommended.css'
 
-const RecommendedForYou = ({data, changeBookmarked,searchCounter, setSearchCounter}) => { 
+const RecommendedForYou = ({data, changeBookmarked}) => { 
     return(
         <>
             <div className='bg-gray-900 pl-4 ml-2'>

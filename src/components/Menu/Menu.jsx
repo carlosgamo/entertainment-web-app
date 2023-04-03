@@ -3,8 +3,8 @@ import IconNavHome from "../icons/IconNavHome.jsx";
 import IconNavMovies from "../icons/IconNavMovies";
 import IconNavSeries from "../icons/IconNavSeries";
 import IconNavBookmark from "../icons/IconNavBookmark";
-import '../Menu/Menu.css'
-import Logout from '../../Logout';
+import '../Menu/Menu.css';
+import { Link } from 'react-router-dom';
 
 const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOut}) => { 
 
@@ -17,9 +17,9 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOu
         <>
             
                 <div className="menu">
-                <div id="logo" className="logo">
+                <Link id="logo" className="logo" to="/">
                     <Logo/>
-                </div>
+                </Link>
                 <div id="nav-bar" className="nav-bar">
                     <div className="nav-icon"
                         onClick={() => handleClick(0,"all")}
@@ -42,12 +42,12 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOu
                         >
                         <IconNavBookmark menuSelected={menuSelected}/>
                     </div>
-                    <button className="nav-avatar">
+                    <Link className="nav-avatar" to="/dashboard">
                         <img className='rounded-full' src={profile.picture}/>
                         <div className='nav-avatar-name'>
                             {profile.name}
                         </div>
-                    </button>
+                    </Link>
                     <button className='logout-button' onClick={logOut}>Log out</button>
                     {/* <Logout/> */}
                 </div>
