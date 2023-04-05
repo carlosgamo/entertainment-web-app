@@ -18,10 +18,10 @@ const Dashboard = ({profile, displayTrending, setDisplayTrending}) => {
                 <input type="checkbox" checked={displayTrending} className="ml-4 mt-4"
                     onChange={() => setDisplayTrending(!displayTrending)}
                 /> Display Trending
-                <div id="buttons">
+                {/* <div id="buttons">
                     <button className="dashboard-button absolute bottom-4 left-6">Save</button>
                     <button className="dashboard-button absolute bottom-4 right-6">Cancel</button>
-                </div>
+                </div> */}
             </div>
         </>
     )

@@ -3,6 +3,8 @@
 .trending-container{
     @apply
     ml-2
+    pl-2
+    pr-6
     w-11/12
 }
 
@@ -18,7 +20,9 @@
 
 .trending-title{
     @apply
-    text-gray-300 text-xl pt-4 mb-4 ml-6
+    text-gray-300 text-xl 
+    pt-4
+    mb-4 ml-4
 }
 
 .item-trending-title{

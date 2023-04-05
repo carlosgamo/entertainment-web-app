@@ -46,7 +46,7 @@ const Carousel = ({data, changeBookmarked}) => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-  }, []);
+  });
 
   return (
     <div className="carousel pl-2 pr-2">

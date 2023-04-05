@@ -9,7 +9,7 @@
 
 .item-recommended{
     @apply
-    rounded-md 
+    rounded-md
     text-gray-400 
     w-40
 }
@@ -29,7 +29,7 @@
 
 @media only screen and (min-width: 800px) {
     .recommended-display{
-        @apply grid 
+        @apply grid
         grid-cols-4
     }
 }
@@ -55,7 +55,7 @@
     }
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1450px) {
     .recommended-display{
         @apply grid 
         grid-cols-8
