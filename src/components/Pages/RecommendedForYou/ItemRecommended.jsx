@@ -1,5 +1,5 @@
-import IconBookMarkEmpty from '../icons/IconBookmarkEmpty.jsx';
-import IconPlay from '../icons/IconPlay';
+import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
+import IconPlay from '../../icons/IconPlay';
 import './Recommended.css';
 
 const ItemRecommended = ({item, changeBookmarked}) => { 

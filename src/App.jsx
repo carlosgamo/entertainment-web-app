@@ -9,6 +9,7 @@ import data from './data.json';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom'
+import Login from './components/Pages/Login'
 
 function App() {
   const [filter, setFilter] = useState("all"); 
@@ -43,7 +44,7 @@ function App() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
-  const [ user, setUser ] = useState([]); //Set to null in order to work or [] for dev
+  const [ user, setUser ] = useState(null); //Set to null in order to work or [] for dev
   const [ profile, setProfile ] = useState([]);
 
   const login = useGoogleLogin({
@@ -110,7 +111,7 @@ function App() {
             </div>
           </div>
             ) : (
-              <button className="login-button" onClick={() => login()}>Sign in with Google 🚀 </button>
+              <Login login={login}/>
             )}
         </>
       )

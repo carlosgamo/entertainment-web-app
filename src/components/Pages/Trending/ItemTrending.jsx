@@ -1,4 +1,4 @@
-import IconBookMarkEmpty from '../icons/IconBookmarkEmpty.jsx';
+import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
 import './Trending.css'
 
 const ItemTrending = ({item, changeBookmarked}) => { 

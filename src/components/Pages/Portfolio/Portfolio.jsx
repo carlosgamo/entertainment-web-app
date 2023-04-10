@@ -1,6 +1,6 @@
-import RecommendedForYou from "../../RecommendedForYou/RecommendedForYou";
+import RecommendedForYou from "../RecommendedForYou/RecommendedForYou";
 import SearchBar from "../../SearchBar";
-import Trending from "../../Trending/Trending"
+import Trending from "../Trending/Trending"
 
 const Portfolio = ({data, filteredData, changeSearch, changeBookmarked, displayTrending={displayTrending}}) => { 
 
