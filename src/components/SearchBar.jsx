@@ -1,4 +1,4 @@
-import IconSearch from './icons/IconSearch';
+import IconSearch from '../icons/IconSearch';
 
 const SearchBar = ({changeSearch}) => { 
 

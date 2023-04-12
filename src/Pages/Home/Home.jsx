@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import Menu from './components/Menu/Menu'
-import Portfolio from './components/Pages/Portfolio/Portfolio.jsx'
-import Dashboard from './components/Pages/Dashboard/Dashboard.jsx'
+import './Home.css'
+import Menu from '../../components/Menu/Menu'
+import Portfolio from '../Portfolio/Portfolio.jsx'
+import Dashboard from '../Dashboard/Dashboard.jsx'
 
-import data from './data.json';
-
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
+import data from '../../data.json';
 import { Route, Routes } from 'react-router-dom'
-import Login from './components/Pages/Login'
 
 function App() {
   const [filter, setFilter] = useState("all"); 
@@ -44,51 +40,18 @@ function App() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
-  const [ user, setUser ] = useState(null); //Set to null in order to work or [] for dev
-  const [ profile, setProfile ] = useState([]);
-
-  const login = useGoogleLogin({
-      onSuccess: (codeResponse) => setUser(codeResponse),
-      onError: (error) => console.log('Login Failed:', error)
-  });
-
-  useEffect(() => {
-          if (user) {
-              axios
-                  .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-                      headers: {
-                          Authorization: `Bearer ${user.access_token}`,
-                          Accept: 'application/json'
-                      }
-                  })
-                  .then((res) => {
-                      setProfile(res.data);
-                  })
-                  .catch((err) => console.log(err.message));
-          }
-      },
-      [ user ]
-  );
-
-  const logOut = () => {
-      googleLogout();
-      setUser(null)
-      setProfile(null);
-  };
-
 
   const [displayTrending, setDisplayTrending] = useState(true);
 
       return(
         <>
-        {user ? (
           <div className='app-container'>
             <div className='app-menu'>
               <Menu 
                 changeFilter={changeFilter} filter={filter} 
                 menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-                profile={profile}
-                logOut={logOut}
+                // profile={profile}
+                // logOut={logOut}
               />
             </div>
             <div className='main-app'>
@@ -101,7 +64,7 @@ function App() {
                                   changeBookmarked={changeBookmarked}
                                   />} path="/"></Route>
                 <Route element={<Dashboard 
-                                    profile={profile} 
+                                    // profile={profile} 
                                     displayTrending={displayTrending}
                                     setDisplayTrending={setDisplayTrending}
                                 />} 
@@ -110,9 +73,6 @@ function App() {
              
             </div>
           </div>
-            ) : (
-              <Login login={login}/>
-            )}
         </>
       )
   }

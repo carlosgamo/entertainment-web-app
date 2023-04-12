@@ -1,5 +1,5 @@
 import RecommendedForYou from "../RecommendedForYou/RecommendedForYou";
-import SearchBar from "../../SearchBar";
+import SearchBar from "../../components/SearchBar";
 import Trending from "../Trending/Trending"
 
 const Portfolio = ({data, filteredData, changeSearch, changeBookmarked, displayTrending={displayTrending}}) => { 

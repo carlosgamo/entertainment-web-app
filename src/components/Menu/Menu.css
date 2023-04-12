@@ -82,14 +82,4 @@
         flex justify-center
         opacity-100
     }
-
-    .logout-button{
-        @apply
-        text-white
-        text-sm
-        hover:text-blue-500
-        mt-10
-        mb-4
-        -ml-8
-    }
 }

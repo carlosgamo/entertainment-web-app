@@ -1,9 +1,10 @@
-import Logo from '../icons/Logo'
-import IconNavHome from "../icons/IconNavHome.jsx";
-import IconNavMovies from "../icons/IconNavMovies";
-import IconNavSeries from "../icons/IconNavSeries";
-import IconNavBookmark from "../icons/IconNavBookmark";
-import '../Menu/Menu.css';
+import Logo from '../../icons/Logo'
+import IconNavHome from "../../icons/IconNavHome.jsx";
+import IconNavMovies from "../../icons/IconNavMovies";
+import IconNavSeries from "../../icons/IconNavSeries";
+import IconNavBookmark from "../../icons/IconNavBookmark";
+import Logout from "../Logout.jsx"
+import './Menu.css';
 import { Link } from 'react-router-dom';
 
 const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOut}) => { 
@@ -42,14 +43,13 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOu
                         >
                         <IconNavBookmark menuSelected={menuSelected}/>
                     </div>
-                    <Link className="nav-avatar" to="/dashboard">
-                        <img className='rounded-full' src={profile.picture}/>
+                    <Link className="nav-avatar" to="/">
+                        {/* <img className='rounded-full' src={profile.picture}/> */}
                         <div className='nav-avatar-name'>
-                            {profile.name}
+                            {/* {profile.name} */}
                         </div>
                     </Link>
-                    <button className='logout-button' onClick={logOut}>Log out</button>
-                    {/* <Logout/> */}
+                    <Logout/>
                 </div>
                 </div>              
         </>

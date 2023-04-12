@@ -14,7 +14,7 @@
     w-40
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 650px) {
     .recommended-display{
         @apply grid
         grid-cols-3
@@ -48,23 +48,30 @@
     }
 }
 
-@media only screen and (min-width: 1250px) {
+@media only screen and (min-width: 1450px) {
     .recommended-display{
         @apply grid 
         grid-cols-7
     }
 }
 
-@media only screen and (min-width: 1450px) {
+@media only screen and (min-width: 1650px) {
     .recommended-display{
         @apply grid 
         grid-cols-8
     }
 }
 
-@media only screen and (min-width: 1650px) {
+@media only screen and (min-width: 1800px) {
     .recommended-display{
         @apply grid 
         grid-cols-9
+    }
+}
+
+@media only screen and (min-width: 1900px) {
+    .recommended-display{
+        @apply grid 
+        grid-cols-10
     }
 }
