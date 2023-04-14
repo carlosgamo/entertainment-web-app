@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import './Home.css'
+
 import Menu from '../../components/Menu/Menu'
 import Portfolio from '../Portfolio/Portfolio.jsx'
 import Dashboard from '../Dashboard/Dashboard.jsx'
 
 import data from '../../data.json';
-import { Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
 
-function App() {
+
+function Home() {
+
+  const location = useLocation();
+
   const [filter, setFilter] = useState("all"); 
 
   const [searchValue, setSearchValue] = useState("");
@@ -47,11 +54,10 @@ function App() {
         <>
           <div className='app-container'>
             <div className='app-menu'>
-              <Menu 
+              <Menu
                 changeFilter={changeFilter} filter={filter} 
                 menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-                // profile={profile}
-                // logOut={logOut}
+                profileName={location.state.newProfile}
               />
             </div>
             <div className='main-app'>
@@ -76,4 +82,4 @@ function App() {
         </>
       )
   }
-export default App
+export default Home

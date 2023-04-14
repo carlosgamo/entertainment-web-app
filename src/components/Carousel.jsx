@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import ItemTrending from './ItemTrending';
+import ItemTrending from '../Pages/Trending/ItemTrending';
 
 const Carousel = ({data, changeBookmarked}) => {
   const maxScrollWidth = useRef(0);

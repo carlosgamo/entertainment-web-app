@@ -1,4 +1,4 @@
-import Carousel from './Carousel';
+import Carousel from '../../components/Carousel';
 import './Trending.css';
 
 const Trending = ({data, changeBookmarked}) => { 
@@ -9,7 +9,7 @@ const Trending = ({data, changeBookmarked}) => {
                     Trending  
                 </div>
                 
-                <Carousel data={data} changeBookmarked={changeBookmarked}/>                
+                <Carousel id="carousel" data={data} changeBookmarked={changeBookmarked}/>                
             </div>       
         </>
     )

@@ -13,7 +13,7 @@ export default function UserContextProvider({children}) {
         const unsuscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         })
-        return unsuscribe;
+        // return unsuscribe;
     }, [])
 
     if (user === false) return (<p>Loading app...</p>)

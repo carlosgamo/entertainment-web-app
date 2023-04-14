@@ -5,22 +5,27 @@ import IconNavSeries from "../../icons/IconNavSeries";
 import IconNavBookmark from "../../icons/IconNavBookmark";
 import Logout from "../Logout.jsx"
 import './Menu.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOut}) => { 
+const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => { 
 
     function handleClick(number, filter){
         setMenuSelected(number)
         changeFilter(filter)
-    }  
+    }
 
+    useEffect(() => {
+        //console.log(profile)
+    })
+    
     return(
         <>
             
                 <div className="menu">
-                <Link id="logo" className="logo" to="/">
+                <NavLink id="logo" className="logo" to="/">
                     <Logo/>
-                </Link>
+                </NavLink>
                 <div id="nav-bar" className="nav-bar">
                     <div className="nav-icon"
                         onClick={() => handleClick(0,"all")}
@@ -42,13 +47,13 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOu
                         onClick={() => handleClick(3, "isBookmarked")}
                         >
                         <IconNavBookmark menuSelected={menuSelected}/>
-                    </div>
-                    <Link className="nav-avatar" to="/">
-                        {/* <img className='rounded-full' src={profile.picture}/> */}
+                    </div>                  
+                    <NavLink className="nav-avatar" to="/">
+                        <img className='rounded-full' />
                         <div className='nav-avatar-name'>
-                            {/* {profile.name} */}
+                            {profileName.charAt(0).toUpperCase()}
                         </div>
-                    </Link>
+                    </NavLink>
                     <Logout/>
                 </div>
                 </div>              
@@ -56,4 +61,4 @@ const MenuMobile = ({changeFilter, menuSelected, setMenuSelected, profile, logOu
     )
  };
 
- export default MenuMobile;
+ export default Menu;

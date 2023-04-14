@@ -1,29 +1,28 @@
 import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, googleLogout } from '@react-oauth/google'
 import { useEffect, useState } from 'react';
 import { login } from '../config/firebase';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useUserContext } from '../context/UserContext';
 
 import './Login.css'
-import { useRedirectActiveUser } from '../hooks/useRedirectActiveUser';
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [profile, setProfile] = useState("");
 
     const {user} = useUserContext();
-    const [ profile, setProfile ] = useState([]);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         if (user){
-            navigate('/home');
-            console.log("Already logged in")
+            const newProfile = user.email
+            setProfile(newProfile);
+            navigate('/home', {state: {newProfile}});
         }
-    }, [user]);
+    }, [profile]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -41,7 +40,6 @@ function Login() {
 
     const logOut = () => {
         googleLogout();
-        setUser(null)
         // setProfile(null);
     };
   

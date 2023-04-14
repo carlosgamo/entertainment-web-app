@@ -7,9 +7,6 @@ export const useRedirectActiveUser = () => {
 
     const {user} = useUserContext();
 
-
-    console.log(user)
-
     useEffect(() => {
         if (user){
             navigate(path);

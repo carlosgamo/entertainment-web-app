@@ -19,13 +19,14 @@
 
 .nav-icon{
     @apply
-    mr-10
+    mr-6
 }
 
 .nav-avatar{
     @apply
-    w-8 h-8 rounded-full border-2 -mt-1.5
+    w-7 h-7 rounded-full border-2 
     text-white text-xs justify-center
+    -mt-1 mr-10
     hover:border-blue-500
     hover:text-blue-500
 }
@@ -73,12 +74,17 @@
     .nav-avatar{
         @apply
         /* absolute bottom-10 */
-        -ml-2 mt-36 mb-4
+        bg-gradient-to-r from-sky-400 to-cyan-300
+        w-10 h-10 
+        -ml-3 mt-36 mb-4
+        visible
     }
 
     .nav-avatar-name{
         @apply
-        mt-2
+        mt-0.5
+        text-xl
+        font-bold
         flex justify-center
         opacity-100
     }
