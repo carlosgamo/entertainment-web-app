@@ -56,7 +56,7 @@ function Home() {
           />
         </div>
         <div className='main-app'>
-          <Portfolio 
+          <Portfolio
             data={data}
             filteredData={filteredData}
             changeSearch={changeSearch}

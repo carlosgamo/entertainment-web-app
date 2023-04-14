@@ -10,7 +10,7 @@ const Portfolio = ({data, filteredData, changeSearch, changeBookmarked}) => {
                 <SearchBar changeSearch={changeSearch} />
               </div>
               <div className='trending'>
-                <Trending data={data} changeBookmarked={changeBookmarked}/>
+                <Trending data={filteredData()} changeBookmarked={changeBookmarked}/>
               </div>
               <div className='recommended-for-you'>
                 <RecommendedForYou 

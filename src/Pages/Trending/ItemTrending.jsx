@@ -1,16 +1,19 @@
-import { useState } from 'react';
 import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
 import './Trending.css'
-import { useEffect } from 'react';
 
 const ItemTrending = ({item, changeBookmarked}) => { 
+
+    function handleClick() {
+        console.log(item.isBookmarked)
+        changeBookmarked(item.title)
+    }
 
     return (
         <>
             <div className="item-trending-container">
                 <img className="item-trending-image" src={item.thumbnail.trending.large}/>
                 <button className='icon-bookmark-trending'
-                        onClick={()=> changeBookmarked(item.title)}
+                        onClick={()=> handleClick()}
                 >
                     <IconBookMarkEmpty item={item}/>
                 </button>

@@ -96,7 +96,7 @@ const Carousel = ({data, changeBookmarked}) => {
               <span className="sr-only">Next</span>
             </button>
           </div>
-          <div ref={carousel}
+          <div
             className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
           >
               {data.filter(trend => trend.isTrending).map(item =>(
