@@ -8,8 +8,6 @@ import Portfolio from '../Portfolio/Portfolio.jsx'
 import Dashboard from '../Dashboard/Dashboard.jsx'
 
 import data from '../../data.json';
-import { useEffect } from 'react'
-
 
 function Home() {
 

@@ -1,8 +1,6 @@
-import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, googleLogout } from '@react-oauth/google'
 import { useEffect, useState } from 'react';
-import { login } from '../config/firebase';
+import { login, loginWithGoogle } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useUserContext } from '../context/UserContext';
 
 import './Login.css'
@@ -11,7 +9,6 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [profile, setProfile] = useState("");
 
     const {user} = useUserContext();
     const navigate = useNavigate();
@@ -19,10 +16,9 @@ function Login() {
     useEffect(() => {
         if (user){
             const newProfile = user.email
-            setProfile(newProfile);
             navigate('/home', {state: {newProfile}});
         }
-    }, [profile]);
+    }, [user]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -32,33 +28,6 @@ function Login() {
             console.log(error)
         }
     }
-  
-    const loginWithGoogle = useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
-    });
-
-    const logOut = () => {
-        googleLogout();
-        // setProfile(null);
-    };
-  
-
-    // useEffect(() => {
-    //     if (user) {
-    //         axios
-    //             .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-    //                 headers: {
-    //                     Authorization: `Bearer ${user.access_token}`,
-    //                     Accept: 'application/json'
-    //                 }
-    //             })
-    //             .then((res) => {
-    //                 setProfile(res.data);
-    //             })
-    //             .catch((err) => console.log(err.message));
-    //     }
-    // }, [ user ]);
     
     return(
         <>

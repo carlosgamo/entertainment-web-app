@@ -14,40 +14,35 @@ const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => {
         setMenuSelected(number)
         changeFilter(filter)
     }
-
-    useEffect(() => {
-        //console.log(profile)
-    })
-    
+   
     return(
         <>
-            
-                <div className="menu">
+            <div className="menu">
                 <NavLink id="logo" className="logo" to="/">
                     <Logo/>
                 </NavLink>
                 <div id="nav-bar" className="nav-bar">
-                    <div className="nav-icon"
+                    <button className="nav-icon"
                         onClick={() => handleClick(0,"all")}
                         >
                         <IconNavHome menuSelected={menuSelected}/>
-                    </div>
-                    <div className="nav-icon" 
+                    </button>
+                    <button className="nav-icon" 
                         // onClick={() => changeFilter("Movie")}
                         onClick={() => handleClick(1, "Movie")}
                         >
                         <IconNavMovies menuSelected={menuSelected}/>
-                    </div>
-                    <div className="nav-icon"
+                    </button>
+                    <button className="nav-icon"
                         onClick={() => handleClick(2, "TV Series")}
                         >
                         <IconNavSeries menuSelected={menuSelected}/>
-                    </div>
-                    <div className="nav-icon"
+                    </button>
+                    <button className="nav-icon"
                         onClick={() => handleClick(3, "isBookmarked")}
                         >
                         <IconNavBookmark menuSelected={menuSelected}/>
-                    </div>                  
+                    </button>                  
                     <NavLink className="nav-avatar" to="/">
                         <img className='rounded-full' />
                         <div className='nav-avatar-name'>
