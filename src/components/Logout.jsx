@@ -1,4 +1,5 @@
 import { logout } from "../config/firebase";
+import './Menu/Menu.css'
 
 function Logout() {
 
@@ -12,11 +13,7 @@ function Logout() {
 
     return(
         <button id="logOutButton"
-                className='text-white
-                    text-sm font-semibold
-                    hover:text-blue-500
-                    mb-4
-                    -ml-8'
+                className='logout-Button'
                 onClick={handleLogout}
         >
             Logout

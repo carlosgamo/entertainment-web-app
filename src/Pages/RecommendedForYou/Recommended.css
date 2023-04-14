@@ -10,6 +10,7 @@
 .item-recommended{
     @apply
     rounded-md
+    pr-2
     text-gray-400 
     w-40
 }

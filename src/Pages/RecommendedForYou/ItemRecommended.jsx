@@ -7,12 +7,12 @@ const ItemRecommended = ({item, changeBookmarked}) => {
         <>
             <div className="item-recommended">
                 <img className="rounded-lg" src={item.thumbnail.regular.small}/>
-                <div className='bg-black rounded-full opacity-50 w-7 h-7 
-                                relative -top-24 -right-28 pl-2 pt-2'
+                <button className='bg-black rounded-full opacity-50 w-7 h-7 
+                                relative -top-24 -right-28 pl-2 '
                     onClick={()=> changeBookmarked(item.title)}
                 >
                     <IconBookMarkEmpty item={item}/>
-                </div>
+                </button>
                 <div className="text-xs -mt-6">
                     {item.year} - {item.category} - {item.rating}
                     <div className="text-gray-200 text-base">{item.title}</div>

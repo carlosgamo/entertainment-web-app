@@ -6,7 +6,6 @@ import IconNavBookmark from "../../icons/IconNavBookmark";
 import Logout from "../Logout.jsx"
 import './Menu.css';
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => { 
 
@@ -45,7 +44,7 @@ const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => {
                     </button>                  
                     <NavLink className="nav-avatar" to="/">
                         <img className='rounded-full' />
-                        <div className='nav-avatar-name'>
+                        <div className='nav-avatar-initial'>
                             {profileName.charAt(0).toUpperCase()}
                         </div>
                     </NavLink>

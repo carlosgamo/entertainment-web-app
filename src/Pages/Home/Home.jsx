@@ -45,39 +45,27 @@ function Home() {
     setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
   };
 
+  return(
+    <>
+      <div className='app-container'>
+        <div className='app-menu'>
+          <Menu
+            changeFilter={changeFilter} filter={filter} 
+            menuSelected={menuSelected} setMenuSelected={setMenuSelected}
+            profileName={location.state.newProfile}
+          />
+        </div>
+        <div className='main-app'>
+          <Portfolio 
+            data={data}
+            filteredData={filteredData}
+            changeSearch={changeSearch}
+            changeBookmarked={changeBookmarked}
+          />
+        </div>
+      </div>
+    </>
+  )
+}
 
-  const [displayTrending, setDisplayTrending] = useState(true);
-
-      return(
-        <>
-          <div className='app-container'>
-            <div className='app-menu'>
-              <Menu
-                changeFilter={changeFilter} filter={filter} 
-                menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-                profileName={location.state.newProfile}
-              />
-            </div>
-            <div className='main-app'>
-              <Routes>
-                <Route element={<Portfolio 
-                                  data={data}
-                                  filteredData={filteredData}
-                                  changeSearch={changeSearch}
-                                  displayTrending={displayTrending}
-                                  changeBookmarked={changeBookmarked}
-                                  />} path="/"></Route>
-                <Route element={<Dashboard 
-                                    // profile={profile} 
-                                    displayTrending={displayTrending}
-                                    setDisplayTrending={setDisplayTrending}
-                                />} 
-                       path="/dashboard"></Route>
-              </Routes>
-             
-            </div>
-          </div>
-        </>
-      )
-  }
 export default Home

@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
 import './Trending.css'
+import { useEffect } from 'react';
 
 const ItemTrending = ({item, changeBookmarked}) => { 
+
     return (
         <>
-            <div id={item.id} className="item-trending-container">
+            <div className="item-trending-container">
                 <img className="item-trending-image" src={item.thumbnail.trending.large}/>
                 <button className='icon-bookmark-trending'
                         onClick={()=> changeBookmarked(item.title)}

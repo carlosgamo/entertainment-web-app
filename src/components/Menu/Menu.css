@@ -8,7 +8,7 @@
 
 .nav-bar{
     @apply
-    flex self-center ml-28 -mt-6
+    flex self-center ml-24 -mt-8
 }
 
 .logo{
@@ -24,27 +24,25 @@
 
 .nav-avatar{
     @apply
-    w-7 h-7 rounded-full border-2 
-    text-slate-300 
-    border-slate-300
+    w-7 h-7 rounded-full 
+    mt-1 mr-3 ml-2
     text-xs justify-center
-    -mt-1 mr-10
-    hover:border-white
+    border-2 border-slate-300 hover:border-white
+    text-slate-300 hover:text-white
+    bg-gradient-to-b from-sky-600 to-blue-800    
+}
+
+.nav-avatar-initial{
+    @apply
+    text-base -mt-0.5
+    font-bold
+    flex justify-center
+}
+
+.logout-Button{
+    @apply
+    text-slate-300 text-sm
     hover:text-white
-}
-
-.nav-avatar-name{
-    @apply
-    opacity-0
-}
-
-.logout-button{
-    @apply
-    text-white
-    text-sm
-    -mt-2.5
-    hover:text-blue-200
-    ml-1.5
 }
 
 @media only screen and (min-width: 500px) {
@@ -75,19 +73,17 @@
 
     .nav-avatar{
         @apply
-        /* absolute bottom-10 */
-        bg-gradient-to-b from-sky-600 to-blue-800
         w-10 h-10 
         -ml-3 mt-36 mb-4
-        visible
+    }
+    
+    .nav-avatar-initial{
+        @apply
+        text-lg mt-1
     }
 
-    .nav-avatar-name{
+    .logout-Button{
         @apply
-        mt-0.5
-        text-xl
-        font-bold
-        flex justify-center
-        opacity-100
+        -ml-7 mb-4
     }
 }
