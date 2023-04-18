@@ -1,10 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-
-import {  } from "firebase/auth";
-
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, getRedirectResult, signInWithRedirect, onAuthStateChanged, OAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -25,6 +22,8 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 export const auth = getAuth(app);
 
+
+
 export const login = ({email, password}) => {
   return signInWithEmailAndPassword(auth, email, password)
 }
@@ -33,6 +32,7 @@ export const logout = () => {
   return signOut(auth);
 }
 
+//SIGNIN WITH POPUP
 export const loginWithGoogle = async() => {
   return signInWithPopup(auth, provider)
     .then((result) => {
@@ -53,5 +53,4 @@ export const loginWithGoogle = async() => {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
-
 }

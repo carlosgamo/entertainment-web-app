@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { login, loginWithGoogle } from '../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from '../context/UserContext';
 
 import './Login.css'
+import { useUserContext } from '../context/UserContext';
 
 function Login() {
 
@@ -28,7 +28,7 @@ function Login() {
             console.log(error)
         }
     }
-    
+   
     return(
         <>
             <div className='bg-gradient-to-tr from-slate-400 flex h-screen'>
