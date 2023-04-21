@@ -15,7 +15,7 @@ const ItemRecommended = ({item, changeBookmarked}) => {
                 </button>
                 <div className="text-xs -mt-6">
                     {item.year} - {item.category} - {item.rating}
-                    <div className="text-gray-200 text-base">{item.title}</div>
+                    <div className="text-gray-800 text-base font-medium">{item.title}</div>
                 </div>
                 <button id='icon-play-overlay' 
                      className='relative -top-28 left-16 

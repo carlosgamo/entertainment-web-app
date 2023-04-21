@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body{
-    @apply
-    bg-slate-900
+    @layer
+    bg-white
     overflow-x-hidden
 }
 
@@ -24,10 +24,10 @@ body{
     } */
 
     .app-container{
-        @apply
+        @layer
         grid grid-cols-2
         h-screen w-screen
-        bg-gray-900
+        bg-white
     }
 
     .main-app{

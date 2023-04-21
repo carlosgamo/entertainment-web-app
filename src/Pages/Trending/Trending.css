@@ -20,7 +20,7 @@
 
 .trending-title{
     @apply
-    text-gray-300 text-xl 
+    text-slate-800 text-xl 
     pt-4
     mb-4 ml-4
 }
@@ -33,7 +33,7 @@
 
 .item-trending-info{
     @apply
-    text-xs text-gray-300 
+    text-xs text-cyan-100
     absolute bottom-8 left-4
 }
 
@@ -52,7 +52,7 @@
 }
 
 .icon-bookmark-trending{
-    @apply
+    @layer
     bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2
 }
 
