@@ -1,22 +1,17 @@
 import { useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
 
 import './Home.css'
 
 import Menu from '../../components/Menu/Menu'
 import Portfolio from '../Portfolio/Portfolio.jsx'
-import Dashboard from '../Dashboard/Dashboard.jsx'
 
 import data from '../../data.json';
+import { useUserContext } from '../../context/UserContext';
 
 function Home() {
-
-  const location = useLocation();
-
   const [filter, setFilter] = useState("all"); 
 
   const [searchValue, setSearchValue] = useState("");
-
 
   const [items, setItems] = useState(data);
 
@@ -25,6 +20,14 @@ function Home() {
   const changeFilter = (filter) => setFilter(filter);
 
   const changeSearch  = (searchValue) => setSearchValue(searchValue);
+
+  const {user} = useUserContext();
+
+  const initialProfileName = JSON.parse(localStorage.getItem("profileName")) || localStorage.setItem("profileName", JSON.stringify(user.displayName));
+  const [profileName, setProfileName] = useState(initialProfileName);
+
+  const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending"));
+  const [displayTrending, setDisplayTrending] = useState(initialStateDisplayTrending)
 
   const filteredData = () => {
     switch (filter) {
@@ -52,7 +55,8 @@ function Home() {
           <Menu
             changeFilter={changeFilter} filter={filter} 
             menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-            profileName={location.state.newProfile}
+            profileName={profileName}
+            displayTrending={displayTrending} setDisplayTrending={setDisplayTrending}
           />
         </div>
         <div className='main-app'>
@@ -61,6 +65,7 @@ function Home() {
             filteredData={filteredData}
             changeSearch={changeSearch}
             changeBookmarked={changeBookmarked}
+            displayTrending={displayTrending}
           />
         </div>
       </div>

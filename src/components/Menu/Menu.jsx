@@ -5,7 +5,7 @@ import IconNavSeries from "../../icons/IconNavSeries";
 import IconNavBookmark from "../../icons/IconNavBookmark";
 import Logout from "../Logout.jsx"
 import './Menu.css';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => { 
 
@@ -17,9 +17,9 @@ const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => {
     return(
         <>
             <div className="menu">
-                <NavLink id="logo" className="logo" to="/">
+                <Link id="logo" className="logo" to="/">
                     <Logo/>
-                </NavLink>
+                </Link>
                 <div id="nav-bar" className="nav-bar">
                     <button className="nav-icon"
                         onClick={() => handleClick(0,"all")}
@@ -42,12 +42,15 @@ const Menu = ({ profileName, changeFilter, menuSelected, setMenuSelected}) => {
                         >
                         <IconNavBookmark menuSelected={menuSelected}/>
                     </button>                  
-                    <NavLink className="nav-avatar" to="/">
+                    <Link className="nav-avatar"
+                        to={"/ControlPanel"}
+                        // state={{ profileName: profileName}}
+                    >
                         <img className='rounded-full' />
                         <div className='nav-avatar-initial'>
                             {profileName.charAt(0).toUpperCase()}
                         </div>
-                    </NavLink>
+                    </Link>
                     <Logout/>
                 </div>
                 </div>              

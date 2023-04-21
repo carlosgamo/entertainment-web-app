@@ -17,11 +17,11 @@ const ItemRecommended = ({item, changeBookmarked}) => {
                     {item.year} - {item.category} - {item.rating}
                     <div className="text-gray-200 text-base">{item.title}</div>
                 </div>
-                <div id='icon-play-overlay' 
+                <button id='icon-play-overlay' 
                      className='relative -top-28 left-16 
                                 opacity-0 hover:opacity-60'>
                     <IconPlay/>
-                </div>
+                </button>
             </div>
         </>
     )

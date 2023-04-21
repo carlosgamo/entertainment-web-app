@@ -4,7 +4,7 @@ import LayoutPrivate from '../layout/LayoutPrivate.jsx';
 
 import Home from '../Pages/Home/Home'
 import Login from '../components/Login.jsx'
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import ControlPanel from "../Pages/ControlPanel/ControlPanel";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +22,16 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Home/>
+                    }
+                ]
+            },
+            {
+                path: '/controlpanel',
+                element: <LayoutPrivate/>,
+                children: [
+                    {
+                        index: true,
+                        element: <ControlPanel/>
                     }
                 ]
             }

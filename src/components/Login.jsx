@@ -15,8 +15,9 @@ function Login() {
 
     useEffect(() => {
         if (user){
-            const newProfile = user.email
-            navigate('/home', {state: {newProfile}});
+            // localStorage.setItem("profileName",JSON.stringify(user.email))
+            navigate('/home');
+            // navigate('/home', {state: {newProfile}});
         }
     }, [user]);
 
