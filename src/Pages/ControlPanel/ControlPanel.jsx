@@ -4,9 +4,9 @@ import "./ControlPanel.css";
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 
-const initialProfileName = JSON.parse(localStorage.getItem("profileName"));
-  
 const ControlPanel = () => { 
+
+    const initialProfileName = JSON.parse(localStorage.getItem("profileName"));
 
     const inicialStateDarkMode = localStorage.getItem('theme') === 'dark';
     const [darkMode, setDarkMode] = useState(inicialStateDarkMode);

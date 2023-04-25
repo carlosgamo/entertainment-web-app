@@ -7,8 +7,19 @@ import Portfolio from '../Portfolio/Portfolio.jsx'
 
 import data from '../../data.json';
 import { useUserContext } from '../../context/UserContext';
+import { useEffect } from 'react';
 
 function Home() {
+
+  useEffect(()=> {
+    if(localStorage.getItem("displayTrending") === null){
+      localStorage.setItem("displayTrending", true)
+    }
+
+    if(localStorage.getItem("profileName") === null){
+      localStorage.setItem("profileName", "User")
+    }
+  },[])
 
   const [filter, setFilter] = useState("all"); 
 
@@ -57,7 +68,6 @@ function Home() {
             changeFilter={changeFilter} filter={filter} 
             menuSelected={menuSelected} setMenuSelected={setMenuSelected}
             profileName={profileName}
-            displayTrending={displayTrending} setDisplayTrending={setDisplayTrending}
           />
         </div>
         <div className='main-app'>
