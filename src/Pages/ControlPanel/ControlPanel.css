@@ -15,18 +15,33 @@ h2{
     @apply
     relative
     p-6 mt-10 ml-auto mr-auto 
-    w-5/12 h-96
+    w-10/12 h-screen
     text-white bg-slate-200 dark:bg-slate-900 rounded-lg 
 }
 
 .control-panel-items{
     @apply
-    ml-2 pl-4
+    ml-2 pl-4 
 }
 
 .control-panel-button{
     @apply
     bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
     hover:text-slate-800
-    rounded-md border-2 border-slate-500 pt-1.5 pb-2 pl-4 pr-4 
+    rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-4 pr-4 ml-8 mt-2
+}
+
+
+@media only screen and (min-width: 500px) {
+    .control-panel-main{
+        @apply
+        w-5/12
+    }
+
+    .control-panel-button{
+        @apply
+        bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
+        hover:text-slate-800
+        rounded-md border-2 border-slate-500 pt-1.5 pb-2 pl-4 pr-4 -mt-2
+    }
 }

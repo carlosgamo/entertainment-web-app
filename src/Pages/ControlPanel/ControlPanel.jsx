@@ -98,7 +98,7 @@ const ControlPanel = () => {
                     </div>
                 </div>
                 
-                <Link id="logo" className="mr-2" to="/">
+                <Link to="/">
                     {/* <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button> */}
                     <button className="control-panel-button absolute bottom-4 right-6">Return to Home</button>
                 </Link>

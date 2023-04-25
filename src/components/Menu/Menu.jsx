@@ -14,7 +14,7 @@ const Menu = ({profileName, changeFilter, menuSelected, setMenuSelected}) => {
         changeFilter(filter)
     }
 
-    const navIconFillColor = "#0369a1"; //
+    const navIconFillColor = "#0369a1";
    
     return(
         <>

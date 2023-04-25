@@ -13,6 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <UserContextProvider>
           <RouterProvider router={router}/>
         </UserContextProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   </GoogleOAuthProvider>
 )
