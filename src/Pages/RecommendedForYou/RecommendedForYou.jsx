@@ -4,8 +4,8 @@ import './Recommended.css'
 const RecommendedForYou = ({data, changeBookmarked}) => { 
     return(
         <>
-            <div className='bg-white pl-4 ml-2'>
-                <div id="title" className='text-slate-800 text-xl mb-4 pt-8 pl-2'>
+            <div className='bg-white dark:bg-slate-800 pl-4 ml-2'>
+                <div id="title" className='recommended-title'>
                     Recommended for you
                 </div>
                 <div className='recommended-display'>

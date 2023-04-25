@@ -1,4 +1,5 @@
-const IconNavHome = ({menuSelected}) => { 
+const IconNavHome = ({menuSelected, navIconFillColor}) => { 
+
     return (
         <svg 
             width="20" 
@@ -13,7 +14,7 @@ const IconNavHome = ({menuSelected}) => {
                     0h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 
                     1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11h-7c-.6 0-1 
                     .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1Z" 
-                fill={menuSelected === 0 ? "#0369a1" : "#5A698F"}
+                fill={menuSelected === 0 ? navIconFillColor : "#5A698F"}
                 className= "hover:fill-white"
                 />
         </svg>

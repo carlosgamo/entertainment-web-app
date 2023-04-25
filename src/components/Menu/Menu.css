@@ -3,6 +3,7 @@
 .menu{
     @apply
     bg-slate-200
+    dark:bg-gray-900
     h-14
 }
 
@@ -42,6 +43,7 @@
 .logout-Button{
     @apply
     text-slate-800 text-sm
+    dark:text-slate-400
     hover:text-red-800 hover:font-bold 
 }
 

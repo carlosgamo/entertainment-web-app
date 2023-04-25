@@ -1,21 +1,32 @@
 @tailwind components;
 
+h1{
+    @apply
+    text-slate-600
+    dark:text-slate-50
+}
+
+h2{
+    @apply
+    text-xl text-slate-800 dark:text-slate-200 mt-4 mb-2
+}
+
 .control-panel-main{
     @apply
     relative
     p-6 mt-10 ml-auto mr-auto 
     w-5/12 h-96
-    text-white bg-slate-200 rounded-lg 
+    text-white bg-slate-200 dark:bg-slate-900 rounded-lg 
 }
 
 .control-panel-items{
     @apply
-    ml-8 mr-2
+    ml-2 pl-4
 }
 
 .control-panel-button{
     @apply
-    bg-slate-500 hover:bg-sky-200
+    bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
     hover:text-slate-800
     rounded-md border-2 border-slate-500 pt-1.5 pb-2 pl-4 pr-4 
 }

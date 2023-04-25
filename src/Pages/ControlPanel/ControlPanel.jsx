@@ -2,13 +2,18 @@ import { useState } from "react";
 import Logo from "../../icons/Logo";
 import "./ControlPanel.css";
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
 
+const initialProfileName = JSON.parse(localStorage.getItem("profileName"));
+  
 const ControlPanel = () => { 
 
-    const initialProfileName = JSON.parse(localStorage.getItem("profileName"));
+    const inicialStateDarkMode = localStorage.getItem('theme') === 'dark';
+    const [darkMode, setDarkMode] = useState(inicialStateDarkMode);
+
     const [profileName, setProfileName] = useState(initialProfileName);
 
-    const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending")) || localStorage.setItem("displayTrending", true);
+    const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending")) === true;
     const [displayTrending, setDisplayTrending] = useState(initialStateDisplayTrending)
 
     const [changeNameVisible, setChangeNameVisible] = useState(false);
@@ -24,10 +29,22 @@ const ControlPanel = () => {
         localStorage.setItem("profileName", JSON.stringify(tempProfileName))
         setChangeNameVisible(!changeNameVisible)
     }
-    
-    function saveChanges(){
+
+
+    useEffect(() => {
+        if (darkMode){
+            document.documentElement.classList.add('dark')
+            localStorage.setItem('theme', 'dark')
+        }else{
+            document.documentElement.classList.add('light')
+            document.documentElement.classList.remove('dark')
+            localStorage.setItem('theme', 'light')
+        }
+      }, [darkMode]);
+
+      useEffect(() => {
         localStorage.setItem("displayTrending", displayTrending)
-    }
+      }, [displayTrending])
     
     return(
         <>
@@ -37,22 +54,22 @@ const ControlPanel = () => {
                         <Link id="logo" className="" to="/">
                             <Logo/>
                         </Link>
-                    <h2 className="text-slate-600 -mt-8 ml-14">Account - {profileName}</h2>
+                    <h1 className="-mt-8 ml-14">Account - {profileName}</h1>
                     </div>
                 </div>
                 <hr/>
                 <div>
-                    <h2 className="text-xl text-slate-800 mt-4 mb-2">Profile</h2>
+                    <h2>Profile</h2>
                     {changeNameVisible ? 
-                        <div>
+                        <div className="text-slate-800">
                             <input type="text" className="rounded-sm text-slate-800 ml-8" 
                                     maxLength={20} defaultValue={profileName}
                                     onChange={handleChange}/>
-                            <button className="mr-4 ml-6 hover:text-green-400 border-white pt-1.5 pb-2 pl-4 pr-4" 
+                            <button className="control-panel-button ml-2 text-green-200" 
                                     onClick={() => handleSaveProfileName()}
                                     >Save
                             </button>
-                            <button className="hover:text-red-400" 
+                            <button className="control-panel-button ml-4 text-red-200" 
                                     onClick={() => setChangeNameVisible(!changeNameVisible)}
                                     >Cancel
                             </button>
@@ -64,19 +81,25 @@ const ControlPanel = () => {
                         </button>
                     }
                     
-                    <h2 className="text-xl text-slate-800 mt-4 mb-2">Site preferences</h2>
+                    <h2>Site preferences</h2>
                     <div className="text-slate-600">
-                        <input type="checkbox" checked={displayTrending} className="control-panel-items"
-                                onChange={() => setDisplayTrending(!displayTrending)}
-                        />
-                        Display Trending
+                        <p className="control-panel-items">
+                            <input type="checkbox" checked={darkMode} className="mr-2"
+                                    onChange={() => setDarkMode(!darkMode)}
+                            />
+                            Dark mode
+                        </p>
+                        <p className="control-panel-items">
+                            <input type="checkbox" checked={displayTrending} className="mr-2"
+                                    onChange={() => setDisplayTrending(!displayTrending)}
+                            />
+                            Display Trending
+                        </p>
                     </div>
-                    
                 </div>
                 
-                
                 <Link id="logo" className="mr-2" to="/">
-                    <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button>
+                    {/* <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button> */}
                     <button className="control-panel-button absolute bottom-4 right-6">Return to Home</button>
                 </Link>
             </div>

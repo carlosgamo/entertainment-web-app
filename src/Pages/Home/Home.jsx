@@ -9,6 +9,7 @@ import data from '../../data.json';
 import { useUserContext } from '../../context/UserContext';
 
 function Home() {
+
   const [filter, setFilter] = useState("all"); 
 
   const [searchValue, setSearchValue] = useState("");
@@ -27,7 +28,7 @@ function Home() {
   const [profileName, setProfileName] = useState(initialProfileName);
 
   const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending"));
-  const [displayTrending, setDisplayTrending] = useState(initialStateDisplayTrending)
+  const [displayTrending, setDisplayTrending] = useState(initialStateDisplayTrending);
 
   const filteredData = () => {
     switch (filter) {
