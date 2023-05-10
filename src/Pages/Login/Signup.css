@@ -1,0 +1,12 @@
+@tailwind components;
+
+.email-signup-button{
+    @apply
+    border-blue-700 bg-blue-600
+    hover:bg-blue-400 text-white
+    border-2 rounded-md 
+    font-bold text-xl 
+    flex mx-auto mt-4
+    w-40 justify-center
+    pt-1 pb-1.5 pl-4 pr-4
+}

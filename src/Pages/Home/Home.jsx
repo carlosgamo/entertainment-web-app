@@ -15,10 +15,6 @@ function Home() {
     if(localStorage.getItem("displayTrending") === null){
       localStorage.setItem("displayTrending", true)
     }
-
-    if(localStorage.getItem("profileName") === null){
-      localStorage.setItem("profileName", "User")
-    }
   },[])
 
   const [filter, setFilter] = useState("all"); 
@@ -33,9 +29,9 @@ function Home() {
 
   const changeSearch  = (searchValue) => setSearchValue(searchValue);
 
-  const {user} = useUserContext();
+  // const {user} = useUserContext();
 
-  const initialProfileName = JSON.parse(localStorage.getItem("profileName")) || localStorage.setItem("profileName", JSON.stringify(user.displayName));
+  const initialProfileName = localStorage.getItem("profileName");
   const [profileName, setProfileName] = useState(initialProfileName);
 
   const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending"));

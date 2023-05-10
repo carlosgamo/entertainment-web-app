@@ -15,7 +15,7 @@ h2{
     @apply
     relative
     p-6 mt-10 ml-auto mr-auto 
-    w-10/12 h-screen
+    w-10/12 h-96
     text-white bg-slate-200 dark:bg-slate-900 rounded-lg 
 }
 

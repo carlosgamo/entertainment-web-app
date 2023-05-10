@@ -1,7 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, getRedirectResult, signInWithRedirect, onAuthStateChanged, OAuthProvider } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    signOut,
+    createUserWithEmailAndPassword,
+    fetchSignInMethodsForEmail, 
+  } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -16,13 +26,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+
 //Google Firebase Auth
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 export const auth = getAuth(app);
-
-
 
 export const login = ({email, password}) => {
   return signInWithEmailAndPassword(auth, email, password)
@@ -36,21 +45,27 @@ export const logout = () => {
 export const loginWithGoogle = async() => {
   return signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
+      const user = result.user; // The signed-in user info.
     }).catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
+      const email = error.customData.email; // The email of the user's account used.
+      const credential = GoogleAuthProvider.credentialFromError(error); // The AuthCredential type that was used.
     });
+}
+
+//Register new user
+export const registerNewUser = async({email, password}) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    // .then((result) => {
+    //   console.log(result.user)
+    // })
+    // .catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   const email = error.customData.email; // The email of the user's account used.
+    //   const credential = GoogleAuthProvider.credentialFromError(error); // The AuthCredential type that was used.
+    // });
 }

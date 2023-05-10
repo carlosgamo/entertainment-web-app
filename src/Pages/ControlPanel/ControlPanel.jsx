@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const ControlPanel = () => { 
 
-    const initialProfileName = JSON.parse(localStorage.getItem("profileName"));
+    const initialProfileName = localStorage.getItem("profileName");
 
     const inicialStateDarkMode = localStorage.getItem('theme') === 'dark';
     const [darkMode, setDarkMode] = useState(inicialStateDarkMode);
@@ -26,7 +26,7 @@ const ControlPanel = () => {
 
     function handleSaveProfileName(){
         setProfileName(tempProfileName)
-        localStorage.setItem("profileName", JSON.stringify(tempProfileName))
+        localStorage.setItem("profileName", tempProfileName)
         setChangeNameVisible(!changeNameVisible)
     }
 
@@ -59,7 +59,7 @@ const ControlPanel = () => {
                 </div>
                 <hr/>
                 <div>
-                    <h2>Profile</h2>
+                    {/* <h2>Profile</h2>
                     {changeNameVisible ? 
                         <div className="text-slate-800">
                             <input type="text" className="rounded-sm text-slate-800 ml-8" 
@@ -79,7 +79,7 @@ const ControlPanel = () => {
                                 onClick={() => setChangeNameVisible(!changeNameVisible)}
                                 >Change name
                         </button>
-                    }
+                    } */}
                     
                     <h2>Site preferences</h2>
                     <div className="text-slate-600">
