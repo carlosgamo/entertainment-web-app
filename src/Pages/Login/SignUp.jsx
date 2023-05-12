@@ -22,8 +22,8 @@ const SignUp = () => {
 
     const onSubmit = async ({name, email, password}, { setSubmitting, setErrors, resetForm }) =>{
         try {
-            const credentialUser = await registerNewUser({email, password});
-            //resetForm();
+            const credentialUser = await registerNewUser({name, email, password});
+            resetForm();
         } catch (error) {
             if(error.code === "auth/email-already-in-use"){
                 return setErrors({email: "Email already in use"})
@@ -41,6 +41,7 @@ const SignUp = () => {
                 .required("Name required"),
         email: Yup
                 .string()
+                .trim()
                 .email("Invalid email")
                 .required("Email required"),
         password: Yup
@@ -66,8 +67,8 @@ const SignUp = () => {
                                     <div className='input-title'>Name</div>
                                     <input 
                                         type='text' 
-                                        placeholder='Test' 
-                                        className='input-signup' 
+                                        placeholder='Name' 
+                                        className='input-login' 
                                         value={values.name} 
                                         onChange={handleChange}
                                         name='name'

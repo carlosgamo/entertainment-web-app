@@ -2,7 +2,7 @@ import RecommendedForYou from "../RecommendedForYou/RecommendedForYou";
 import SearchBar from "../../components/SearchBar";
 import Trending from "../Trending/Trending"
 
-const Portfolio = ({data, displayTrending, filteredData, changeSearch, changeBookmarked}) => { 
+const Portfolio = ({data, profile, displayTrending, filteredData, changeSearch, changeBookmarked}) => { 
 
   return(
       <> 
@@ -15,6 +15,7 @@ const Portfolio = ({data, displayTrending, filteredData, changeSearch, changeBoo
             <div className='recommended-for-you'>
               <RecommendedForYou 
                 data={filteredData()} 
+                profile={profile}
                 changeBookmarked={changeBookmarked}
               />
             </div>

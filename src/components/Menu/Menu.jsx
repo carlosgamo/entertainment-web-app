@@ -46,11 +46,10 @@ const Menu = ({profileName, changeFilter, menuSelected, setMenuSelected}) => {
                     </button>                  
                     <Link className="nav-avatar"
                         to={"/ControlPanel"}
-                        // state={{ profileName: profileName}}
                     >
                         <img className='rounded-full' />
                         <div className='nav-avatar-initial'>
-                            {profileName.charAt(0).toUpperCase()}
+                            {profileName ? profileName.charAt(0).toUpperCase() : null}
                         </div>
                     </Link>
                     <Logout/>

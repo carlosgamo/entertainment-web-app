@@ -3,22 +3,34 @@ import Logo from "../../icons/Logo";
 import "./ControlPanel.css";
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
+import { useUserContext } from "../../context/UserContext";
+import { fetchUserProfile, loadNewDatabase } from "../../config/firebase";
 
 const ControlPanel = () => { 
 
-    const initialProfileName = localStorage.getItem("profileName");
+    const {user} = useUserContext();
+    const [profile, setProfile] = useState(null);
+    const [profileName, setProfileName] = useState("");
 
-    const inicialStateDarkMode = localStorage.getItem('theme') === 'dark';
+    const inicialStateDarkMode = sessionStorage.getItem('darkMode') === 'true';
     const [darkMode, setDarkMode] = useState(inicialStateDarkMode);
+    const [displayTrending, setDisplayTrending] = useState(true)
 
-    const [profileName, setProfileName] = useState(initialProfileName);
+    useEffect(()=> {
+        fetchUserProfile(user.uid)
+          .then((data) => {
+            setProfile(data)
+            setProfileName(data.name)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      },[user])
 
-    const initialStateDisplayTrending = JSON.parse(localStorage.getItem("displayTrending")) === true;
-    const [displayTrending, setDisplayTrending] = useState(initialStateDisplayTrending)
 
     const [changeNameVisible, setChangeNameVisible] = useState(false);
 
-    let tempProfileName = initialProfileName;
+    let tempProfileName = "TempName";
 
     const handleChange = (event) => {
         tempProfileName = event.target.value
@@ -28,23 +40,28 @@ const ControlPanel = () => {
         setProfileName(tempProfileName)
         localStorage.setItem("profileName", tempProfileName)
         setChangeNameVisible(!changeNameVisible)
-    }
+    }   
 
-
-    useEffect(() => {
-        if (darkMode){
-            document.documentElement.classList.add('dark')
-            localStorage.setItem('theme', 'dark')
-        }else{
-            document.documentElement.classList.add('light')
-            document.documentElement.classList.remove('dark')
-            localStorage.setItem('theme', 'light')
+    useEffect(() => { // DARKMODE
+        if (profile) {
+            if (profile.darkMode){
+                document.documentElement.classList.add('dark')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
         }
-      }, [darkMode]);
+      }, [profile]);
 
-      useEffect(() => {
-        localStorage.setItem("displayTrending", displayTrending)
-      }, [displayTrending])
+      useEffect(() => { //Display TRENDING
+        if (profile) {
+            if (profile.displayTrending){
+                setDisplayTrending(true)
+            }else{
+                setDisplayTrending(false)
+            }
+        }
+      }, [profile]);
     
     return(
         <>
@@ -54,12 +71,12 @@ const ControlPanel = () => {
                         <Link id="logo" className="" to="/">
                             <Logo/>
                         </Link>
-                    <h1 className="-mt-8 ml-14">Account - {profileName}</h1>
+                    <h1 className="-mt-8 ml-14">Account - {profile ? profile.name : null}</h1>
                     </div>
                 </div>
                 <hr/>
                 <div>
-                    {/* <h2>Profile</h2>
+                    <h2>Profile</h2>
                     {changeNameVisible ? 
                         <div className="text-slate-800">
                             <input type="text" className="rounded-sm text-slate-800 ml-8" 
@@ -79,7 +96,7 @@ const ControlPanel = () => {
                                 onClick={() => setChangeNameVisible(!changeNameVisible)}
                                 >Change name
                         </button>
-                    } */}
+                    }
                     
                     <h2>Site preferences</h2>
                     <div className="text-slate-600">
@@ -97,7 +114,7 @@ const ControlPanel = () => {
                         </p>
                     </div>
                 </div>
-                
+                {/* <button className="control-panel-button absolute bottom-20 right-6" onClick={() => loadNewDatabase()}>Load database</button> */}
                 <Link to="/">
                     {/* <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button> */}
                     <button className="control-panel-button absolute bottom-4 right-6">Return to Home</button>

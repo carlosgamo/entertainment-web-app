@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { login, loginWithGoogle } from '../../config/firebase';
+import { fetchUserProfile } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
 
 import './Login.css'
@@ -8,20 +9,16 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 
 function Login() {
-
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-
     const {user} = useUserContext();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (user){
-            localStorage.setItem("profileName", user.displayName)
             navigate('/home');
-            // navigate('/home', {state: {newProfile}});
+            //navigate('/home', {state: {profile}});
         }
     }, [user]);
+
     
     const onSubmit = async ({email, password}, { setSubmitting, setErrors, resetForm }) =>{
         try {
@@ -105,6 +102,9 @@ function Login() {
                                 </form>
                             )}
                         </Formik>
+                    
+                    <button className="control-panel-button absolute bottom-20 right-6" onClick={() => handleProfileLoad()}>Load profile</button>
+                    
                     <span className='ml-4'>Or Connect with your Google account</span>
                     <button className="google-login-button" onClick={() => loginWithGoogle()}>Sign in with Google 🚀 </button>
                     

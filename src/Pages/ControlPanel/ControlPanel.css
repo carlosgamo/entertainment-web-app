@@ -32,10 +32,10 @@ h2{
 }
 
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 600px) {
     .control-panel-main{
         @apply
-        w-5/12
+        w-[40rem]
     }
 
     .control-panel-button{
