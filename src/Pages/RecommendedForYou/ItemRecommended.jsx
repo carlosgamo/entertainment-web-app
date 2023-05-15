@@ -9,7 +9,7 @@ const ItemRecommended = ({item, profile, changeBookmarked}) => {
                 <img className="rounded-lg" src={item.thumbnail.regular.small}/>
                 <button className='bg-black rounded-full opacity-50 w-7 h-7 
                                 relative -top-24 -right-28 pl-2 '
-                    onClick={()=> changeBookmarked(item.title)}
+                    onClick={()=> changeBookmarked(item.id)}
                 >
                     <IconBookMarkEmpty item={item} profile={profile}/>
                 </button>

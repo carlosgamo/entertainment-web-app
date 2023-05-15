@@ -8,7 +8,7 @@ import Portfolio from '../Portfolio/Portfolio.jsx';
 import data from '../../data.json';
 import { useEffect } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import { fetchUserProfile } from '../../config/firebase';
+import { fetchUserProfile, updateBookmarked } from '../../config/firebase';
 
 function Home() {
 
@@ -18,7 +18,7 @@ function Home() {
   const [displayTrending, setDisplayTrending] = useState(true);
 
   useEffect(()=> {
-    fetchUserProfile(user.uid) //user.uid
+    fetchUserProfile(user.uid)
       .then((profileData) => {
         setProfile(profileData)
         setDisplayTrending(profileData.displayTrending)
@@ -61,36 +61,38 @@ function Home() {
     }
   }
 
-  const changeBookmarked = (title) => {
-    setItems(items.map(item => item.title === title ? {...item, isBookmarked: !item.isBookmarked} : item))
+  const changeBookmarked = (id) => {
+    updateBookmarked(user, id, profile.isBookmarked.includes(id))
+      .catch((error) => {
+          console.log("Error updating bookmkark -> " + error)
+      })
   };
 
-    return(
-      
-      (profile ? 
-      <>
-        <div className='app-container'>
-          <div className='app-menu'>
-            <Menu
-              changeFilter={changeFilter} filter={filter} 
-              menuSelected={menuSelected} setMenuSelected={setMenuSelected}
-              profileName={profile.name}
-            />
-          </div>
-          <div className='main-app'>
-            <Portfolio
-              data={data}
-              profile={profile}
-              filteredData={filteredData}
-              changeSearch={changeSearch}
-              changeBookmarked={changeBookmarked}
-              displayTrending={displayTrending}
-            />
-          </div>
+  return(
+    (profile ? 
+    <>
+      <div className='app-container'>
+        <div className='app-menu'>
+          <Menu
+            changeFilter={changeFilter} filter={filter} 
+            menuSelected={menuSelected} setMenuSelected={setMenuSelected}
+            profileName={profile.name}
+          />
         </div>
-      </>
-      : <div>Loading app...</div>)
-    )
-  }
+        <div className='main-app'>
+          <Portfolio
+            data={data}
+            profile={profile}
+            filteredData={filteredData}
+            changeSearch={changeSearch}
+            changeBookmarked={changeBookmarked}
+            displayTrending={displayTrending}
+          />
+        </div>
+      </div>
+    </>
+    : <div>Loading app...</div>)
+  )
+}
 
 export default Home

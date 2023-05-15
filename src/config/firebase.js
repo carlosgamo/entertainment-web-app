@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, where, addDoc, collection, getDocs, doc, updateDoc, setDoc } from "firebase/firestore";
+import { getFirestore, query, where, addDoc, collection, getDocs, doc, updateDoc, setDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import titlesDatabase from '../data.json';
 
 import { 
@@ -76,7 +76,6 @@ export const registerNewUser = async({name, email, password}) => {
   }
 };
 
-//Load user profile
 export const fetchUserProfile = async(uid) => {
   try {
     const q = query(collection(db, "users"), where("uid", "==", uid));
@@ -84,13 +83,13 @@ export const fetchUserProfile = async(uid) => {
     const data = users.docs[0].data();
     return data
   } catch (error) {
-    console.log("An error occured while fetching user data");
+    console.log("An error occured while fetching user data: " + error);
   }
 }
 
+//Updates Profile preferences
 export const updateUserProfile = async(user, updatedProfile) => {
   try {
-    
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const users = await getDocs(q);
     users.forEach(async (u) => {
@@ -98,9 +97,32 @@ export const updateUserProfile = async(user, updatedProfile) => {
       await setDoc(getUser, updatedProfile);
     })
   } catch (error) {
-    console.log("Error updating user profile")
+    console.log("Error updating user profile" + error)
   }
 }
+
+//Updates bookmarked titles
+export const updateBookmarked = async (user, titleID, isBookmarked) => {
+  try {
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const users = await getDocs(q);
+    users.forEach(async (u) => {
+      const getUser = doc(db, 'users', u.id);
+      if (isBookmarked){
+        await updateDoc(getUser, {
+          isBookmarked: arrayRemove(titleID)
+        })
+      }else{
+        await updateDoc(getUser, {
+          isBookmarked: arrayUnion(titleID)
+        })
+      }
+    })
+  } catch (error) {
+    console.log("Error updating bookmark title" + error)
+  }
+}
+
 
 export const loadNewDatabase = async() => {
   try{
