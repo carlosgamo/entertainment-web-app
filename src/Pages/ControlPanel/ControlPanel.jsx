@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Logo from "../../icons/Logo";
 import "./ControlPanel.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { useUserContext } from "../../context/UserContext";
-import { fetchUserProfile, loadNewDatabase } from "../../config/firebase";
+import { fetchUserProfile, loadNewDatabase, updateUserProfile } from "../../config/firebase";
 
 const ControlPanel = () => { 
 
@@ -12,15 +12,17 @@ const ControlPanel = () => {
     const [profile, setProfile] = useState(null);
     const [profileName, setProfileName] = useState("");
 
-    const inicialStateDarkMode = sessionStorage.getItem('darkMode') === 'true';
-    const [darkMode, setDarkMode] = useState(inicialStateDarkMode);
+    const [darkMode, setDarkMode] = useState(false);
     const [displayTrending, setDisplayTrending] = useState(true)
 
+    const navigate = useNavigate();
+
     useEffect(()=> {
-        fetchUserProfile(user.uid)
-          .then((data) => {
-            setProfile(data)
-            setProfileName(data.name)
+        fetchUserProfile(user.uid) //user.uid
+          .then((profileData) => {
+            setProfile(profileData)
+            setProfileName(profileData.name)
+            setDarkMode(profileData.darkMode)
           })
           .catch((error) => {
             console.log(error)
@@ -38,11 +40,31 @@ const ControlPanel = () => {
 
     function handleSaveProfileName(){
         setProfileName(tempProfileName)
-        localStorage.setItem("profileName", tempProfileName)
         setChangeNameVisible(!changeNameVisible)
-    }   
+    }
+    
+    function handleUpdateProfile(){
+        const userNewProfile = {
+            email: profile.email,
+            isBookmarked: profile.isBookmarked,
+            name: profileName,
+            authProvider: profile.authProvider,
+            darkMode: darkMode,
+            displayTrending: displayTrending,
+            uid: user.uid,
+        }
 
-    useEffect(() => { // DARKMODE
+        updateUserProfile(user, userNewProfile)
+            .then(() => {
+                console.log("User updated successfully")
+                navigate('/home')
+            })
+            .catch((error) => {
+                console.log("Error updating profile")
+            })
+    }
+
+    useEffect(() => {
         if (profile) {
             if (profile.darkMode){
                 document.documentElement.classList.add('dark')
@@ -51,17 +73,17 @@ const ControlPanel = () => {
                 document.documentElement.classList.remove('dark')
             }
         }
-      }, [profile]);
+    }, [profile])
 
-      useEffect(() => { //Display TRENDING
-        if (profile) {
-            if (profile.displayTrending){
-                setDisplayTrending(true)
-            }else{
-                setDisplayTrending(false)
-            }
+    useEffect(() => { //Display TRENDING
+    if (profile) {
+        if (profile.displayTrending){
+            setDisplayTrending(true)
+        }else{
+            setDisplayTrending(false)
         }
-      }, [profile]);
+    }
+    }, [profile]);
     
     return(
         <>
@@ -114,6 +136,7 @@ const ControlPanel = () => {
                         </p>
                     </div>
                 </div>
+                <button className="control-panel-button absolute bottom-4 left-2" onClick={() => handleUpdateProfile()}>Save changes</button>
                 {/* <button className="control-panel-button absolute bottom-20 right-6" onClick={() => loadNewDatabase()}>Load database</button> */}
                 <Link to="/">
                     {/* <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button> */}

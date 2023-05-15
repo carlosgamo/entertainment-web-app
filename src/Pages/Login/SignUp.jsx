@@ -14,9 +14,7 @@ const SignUp = () => {
 
     useEffect(() => {
         if (user){
-            localStorage.setItem("profileName", user.displayName)
             navigate('/home');
-            // navigate('/home', {state: {newProfile}});
         }
     }, [user]);
 
@@ -29,7 +27,6 @@ const SignUp = () => {
                 return setErrors({email: "Email already in use"})
             }
         } finally {
-            
             setSubmitting(false)
         }
     }

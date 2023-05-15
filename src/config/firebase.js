@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, where, addDoc, collection, getDocs } from "firebase/firestore";
+import { getFirestore, query, where, addDoc, collection, getDocs, doc, updateDoc, setDoc } from "firebase/firestore";
 import titlesDatabase from '../data.json';
 
 import { 
@@ -11,7 +11,6 @@ import {
     signOut,
     createUserWithEmailAndPassword,
   } from "firebase/auth"
-
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -64,15 +63,16 @@ export const registerNewUser = async({name, email, password}) => {
     const res = await createUserWithEmailAndPassword(auth, email, password)
     const user = res.user;
     await addDoc(collection(db, "users"), {
-      uid: user.uid,
+      uid: user.id,
       name,
       authProvider: "local",
       email,
+      isBookmarked: [],
       darkMode: false,
       displayTrending: true,
     });
-  } catch (err) {
-    return err;
+  } catch (error) {
+    return error;
   }
 };
 
@@ -80,12 +80,25 @@ export const registerNewUser = async({name, email, password}) => {
 export const fetchUserProfile = async(uid) => {
   try {
     const q = query(collection(db, "users"), where("uid", "==", uid));
-    const doc = await getDocs(q);
-    const data = doc.docs[0].data();
+    const users = await getDocs(q);
+    const data = users.docs[0].data();
     return data
   } catch (error) {
-    //console.error(error);
     console.log("An error occured while fetching user data");
+  }
+}
+
+export const updateUserProfile = async(user, updatedProfile) => {
+  try {
+    
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const users = await getDocs(q);
+    users.forEach(async (u) => {
+      const getUser = doc(db, 'users', u.id);
+      await setDoc(getUser, updatedProfile);
+    })
+  } catch (error) {
+    console.log("Error updating user profile")
   }
 }
 

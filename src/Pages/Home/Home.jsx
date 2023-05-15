@@ -18,15 +18,25 @@ function Home() {
   const [displayTrending, setDisplayTrending] = useState(true);
 
   useEffect(()=> {
-    fetchUserProfile(user.uid)
+    fetchUserProfile(user.uid) //user.uid
       .then((profileData) => {
         setProfile(profileData)
         setDisplayTrending(profileData.displayTrending)
+
       })
       .catch((error) => {
         console.log(error)
       })
-  },[user])
+
+      if (profile) { // DARKMODE
+        if (profile.darkMode){
+            document.documentElement.classList.add('dark')
+        }else{
+            document.documentElement.classList.add('light')
+            document.documentElement.classList.remove('dark')
+        }
+    }
+  },[profile])
 
   const [filter, setFilter] = useState("all"); 
   const [searchValue, setSearchValue] = useState("");
@@ -56,6 +66,8 @@ function Home() {
   };
 
     return(
+      
+      (profile ? 
       <>
         <div className='app-container'>
           <div className='app-menu'>
@@ -77,6 +89,7 @@ function Home() {
           </div>
         </div>
       </>
+      : <div>Loading app...</div>)
     )
   }
 

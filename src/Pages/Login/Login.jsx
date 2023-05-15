@@ -15,7 +15,6 @@ function Login() {
     useEffect(() => {
         if (user){
             navigate('/home');
-            //navigate('/home', {state: {profile}});
         }
     }, [user]);
 
