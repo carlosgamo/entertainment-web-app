@@ -9,6 +9,7 @@ h1{
 h2{
     @apply
     text-xl text-slate-800 dark:text-slate-200 mt-4 mb-2
+    underline
 }
 
 .control-panel-main{
@@ -22,6 +23,8 @@ h2{
 .control-panel-items{
     @apply
     ml-2 pl-4 
+    text-slate-600
+    dark:text-slate-300
 }
 
 .control-panel-button{
@@ -29,6 +32,23 @@ h2{
     bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
     hover:text-slate-800
     rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-4 pr-4 ml-8 mt-2
+}
+
+.change-name-input{
+    @apply
+    rounded-sm ml-8 pl-2
+    text-slate-700
+}
+
+.change-profile-name-button{
+    @apply
+    ml-10
+    hover:bg-slate-100 
+    hover:text-slate-700 
+    dark:hover:text-slate-800 
+    dark:text-slate-200
+    text-slate-900
+    rounded-md p-2
 }
 
 

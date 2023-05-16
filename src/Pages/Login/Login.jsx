@@ -100,10 +100,7 @@ function Login() {
                                     
                                 </form>
                             )}
-                        </Formik>
-                    
-                    <button className="control-panel-button absolute bottom-20 right-6" onClick={() => handleProfileLoad()}>Load profile</button>
-                    
+                        </Formik>                    
                     <span className='ml-4'>Or Connect with your Google account</span>
                     <button className="google-login-button" onClick={() => loginWithGoogle()}>Sign in with Google 🚀 </button>
                     

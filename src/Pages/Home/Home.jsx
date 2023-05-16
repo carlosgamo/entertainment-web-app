@@ -5,10 +5,10 @@ import './Home.css';
 import Menu from '../../components/Menu/Menu';
 import Portfolio from '../Portfolio/Portfolio.jsx';
 
-import data from '../../data.json';
+//import data from '../../data.json';
 import { useEffect } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import { fetchUserProfile, updateBookmarked } from '../../config/firebase';
+import { fetchTitles, fetchUserProfile, updateBookmarked } from '../../config/firebase';
 
 function Home() {
 
@@ -16,6 +16,15 @@ function Home() {
 
   const [profile, setProfile] = useState("");
   const [displayTrending, setDisplayTrending] = useState(true);
+
+  const [items, setItems] = useState([]);
+
+  const [filter, setFilter] = useState("all"); 
+  const [searchValue, setSearchValue] = useState("");
+  
+  const [menuSelected, setMenuSelected] = useState(0);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=> {
     fetchUserProfile(user.uid)
@@ -38,10 +47,18 @@ function Home() {
     }
   },[profile])
 
-  const [filter, setFilter] = useState("all"); 
-  const [searchValue, setSearchValue] = useState("");
-  const [items, setItems] = useState(data);
-  const [menuSelected, setMenuSelected] = useState(0);
+  useEffect(() => {
+    fetchTitles()
+    .then((data) => {
+      setItems(data)
+    })
+    .catch((error) => {
+      console.log("Error loading titles: " + error)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  }, [])
 
   const changeFilter = (filter) => setFilter(filter);
   const changeSearch  = (searchValue) => setSearchValue(searchValue);
@@ -81,7 +98,7 @@ function Home() {
         </div>
         <div className='main-app'>
           <Portfolio
-            data={data}
+            items={items}
             profile={profile}
             filteredData={filteredData}
             changeSearch={changeSearch}

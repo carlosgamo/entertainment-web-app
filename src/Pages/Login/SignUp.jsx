@@ -44,7 +44,7 @@ const SignUp = () => {
         password: Yup
                 .string()
                 .trim()
-                .min(6, "Min. 6 characters")
+                .min(6, "Password should have at least 6 characters")
                 .required("Password required")
     })
     

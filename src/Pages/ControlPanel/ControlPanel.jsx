@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { fetchUserProfile, loadNewDatabase, updateUserProfile } from "../../config/firebase";
+import { Warning } from "postcss";
 
 const ControlPanel = () => { 
 
@@ -12,16 +13,21 @@ const ControlPanel = () => {
     const [profile, setProfile] = useState(null);
     const [profileName, setProfileName] = useState("");
 
+    const [previousName, setPreviousName] = useState("");
+
     const [darkMode, setDarkMode] = useState(false);
     const [displayTrending, setDisplayTrending] = useState(true)
+
+    const [changeNameVisible, setChangeNameVisible] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(()=> {
-        fetchUserProfile(user.uid) //user.uid
+        fetchUserProfile(user.uid)
           .then((profileData) => {
             setProfile(profileData)
             setProfileName(profileData.name)
+            setPreviousName(profileData.name)
             setDarkMode(profileData.darkMode)
           })
           .catch((error) => {
@@ -30,16 +36,12 @@ const ControlPanel = () => {
       },[user])
 
 
-    const [changeNameVisible, setChangeNameVisible] = useState(false);
-
-    let tempProfileName = "TempName";
-
     const handleChange = (event) => {
-        tempProfileName = event.target.value
+        setProfileName(event.target.value)
     }
 
-    function handleSaveProfileName(){
-        setProfileName(tempProfileName)
+    function handleCancelButton(){
+        setProfileName(previousName)
         setChangeNameVisible(!changeNameVisible)
     }
     
@@ -64,7 +66,7 @@ const ControlPanel = () => {
             })
     }
 
-    useEffect(() => {
+    useEffect(() => { //DARKMODE
         if (profile) {
             if (profile.darkMode){
                 document.documentElement.classList.add('dark')
@@ -93,33 +95,32 @@ const ControlPanel = () => {
                         <Link id="logo" className="" to="/">
                             <Logo/>
                         </Link>
-                    <h1 className="-mt-8 ml-14">Account - {profile ? profile.name : null}</h1>
+                    <h1 className="-mt-8 ml-14">Account - Control panel</h1>
                     </div>
                 </div>
                 <hr/>
                 <div>
                     <h2>Profile</h2>
-                    {changeNameVisible ? 
-                        <div className="text-slate-800">
-                            <input type="text" className="rounded-sm text-slate-800 ml-8" 
-                                    maxLength={20} defaultValue={profileName}
-                                    onChange={handleChange}/>
-                            <button className="control-panel-button ml-2 text-green-200" 
-                                    onClick={() => handleSaveProfileName()}
-                                    >Save
-                            </button>
-                            <button className="control-panel-button ml-4 text-red-200" 
+                    <div className="control-panel-items">Name</div>
+                        {changeNameVisible ? 
+                            <div>
+                                <input type="text" className="change-name-input" 
+                                        maxLength={20} defaultValue={profileName}
+                                        onChange={handleChange}/>
+                                <button className="control-panel-button ml-4 text-red-200" 
+                                        onClick={() => handleCancelButton()}
+                                        >Cancel
+                                </button>
+                            </div> 
+                            : 
+                            
+                            <button className="change-profile-name-button" 
                                     onClick={() => setChangeNameVisible(!changeNameVisible)}
-                                    >Cancel
+                                    >
+                                        {profileName}
                             </button>
-                        </div> 
-                        : 
-                        <button className="ml-6 hover:bg-sky-600 bg-slate-400 border-white border-2 rounded-md pb-1 pl-4 pr-4" 
-                                onClick={() => setChangeNameVisible(!changeNameVisible)}
-                                >Change name
-                        </button>
                     }
-                    
+
                     <h2>Site preferences</h2>
                     <div className="text-slate-600">
                         <p className="control-panel-items">
@@ -139,7 +140,6 @@ const ControlPanel = () => {
                 <button className="control-panel-button absolute bottom-4 left-2" onClick={() => handleUpdateProfile()}>Save changes</button>
                 {/* <button className="control-panel-button absolute bottom-20 right-6" onClick={() => loadNewDatabase()}>Load database</button> */}
                 <Link to="/">
-                    {/* <button className="control-panel-button absolute bottom-4 left-6" onClick={() => saveChanges()}>Save changes</button> */}
                     <button className="control-panel-button absolute bottom-4 right-6">Return to Home</button>
                 </Link>
             </div>

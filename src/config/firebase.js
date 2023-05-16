@@ -63,18 +63,31 @@ export const registerNewUser = async({name, email, password}) => {
     const res = await createUserWithEmailAndPassword(auth, email, password)
     const user = res.user;
     await addDoc(collection(db, "users"), {
-      uid: user.id,
-      name,
+      uid: user.uid,
+      name: name,
       authProvider: "local",
-      email,
+      email: email,
       isBookmarked: [],
       darkMode: false,
       displayTrending: true,
     });
   } catch (error) {
-    return error;
+    console.log(error);
   }
 };
+
+export const fetchTitles = async() => {
+  try {
+    const titles = await getDocs(collection(db, "titles"));
+    const data = []
+    titles.forEach((title) => {
+      data.push(title.data())
+    });
+    return data
+  } catch (error) {
+    console.log("An error occured while fetching user data: " + error);
+  }
+}
 
 export const fetchUserProfile = async(uid) => {
   try {
@@ -123,7 +136,7 @@ export const updateBookmarked = async (user, titleID, isBookmarked) => {
   }
 }
 
-
+//TO IMPORT A NEW DATABASE FROM A JSON FILE
 export const loadNewDatabase = async() => {
   try{
     titlesDatabase.forEach(title => {
@@ -131,6 +144,7 @@ export const loadNewDatabase = async() => {
       addDoc(collection(db, "titles"), {
         id: title.id,
         title: title.title,
+        thumbnail: title.thumbnail,
         year: title.year,
         category: title.category,
         rating: title.rating,
