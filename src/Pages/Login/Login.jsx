@@ -101,9 +101,8 @@ function Login() {
                                 </form>
                             )}
                         </Formik>                    
-                    <span className='ml-4'>Or Connect with your Google account</span>
-                    <button className="google-login-button" onClick={() => loginWithGoogle()}>Sign in with Google 🚀 </button>
-                    
+                    {/* <span className='ml-4'>Or Connect with your Google account</span>
+                    <button className="google-login-button" onClick={() => loginWithGoogle()}>Sign in with Google 🚀 </button> */}
                 </div>
             </div>
         </>

@@ -10,6 +10,7 @@ import {
     GoogleAuthProvider, 
     signOut,
     createUserWithEmailAndPassword,
+    sendSignInLinkToEmail,
   } from "firebase/auth"
 
 const firebaseConfig = {
@@ -42,7 +43,7 @@ export const logout = () => {
   return signOut(auth);
 }
 
-//SIGNIN WITH POPUP
+//SIGNIN WITH GOOGLE (Popup)
 export const loginWithGoogle = async() => {
   return signInWithPopup(auth, provider)
     .then((result) => {
@@ -50,6 +51,7 @@ export const loginWithGoogle = async() => {
       const token = credential.accessToken;
       const user = result.user; // The signed-in user info.
     }).catch((error) => {
+      console.log(error.code)
       const errorCode = error.code;
       const errorMessage = error.message;
       const email = error.customData.email; // The email of the user's account used.
@@ -58,23 +60,50 @@ export const loginWithGoogle = async() => {
 }
 
 //Register new user
-export const registerNewUser = async({name, email, password}) => {
-  try{ 
-    const res = await createUserWithEmailAndPassword(auth, email, password)
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name: name,
-      authProvider: "local",
-      email: email,
-      isBookmarked: [],
-      darkMode: false,
-      displayTrending: true,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+// export const registerNewUser = async({name, email, password}) => {
+//   try{ 
+//     const res = await createUserWithEmailAndPassword(auth, email, password)
+//     const user = res.user;
+//     await addDoc(collection(db, "users"), {
+//       uid: user.uid,
+//       name: name,
+//       authProvider: "local",
+//       email: email,
+//       isBookmarked: [],
+//       darkMode: false,
+//       displayTrending: true,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+const actionCodeSettings = {
+  // URL you want to redirect back to. The domain (www.example.com) for this
+  // URL must be in the authorized domains list in the Firebase Console.
+  url: 'https://gamo-entertainment-app.netlify.app/',
+  // This must be true.
+  handleCodeInApp: true,
+  dynamicLinkDomain: 'localhost.page.link'
 };
+
+export const registerNewUser = async({name, email, password}) => {
+  await sendSignInLinkToEmail(auth, email, actionCodeSettings)
+    .then(() => {
+      // The link was successfully sent. Inform the user.
+      // Save the email locally so you don't need to ask the user for it again
+      // if they open the link on the same device.
+      window.localStorage.setItem('emailForSignIn', email);
+      // ...
+    })
+    .catch((error) => {
+      console.log(error)
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+    });
+}
+
 
 export const fetchTitles = async() => {
   try {
