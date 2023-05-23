@@ -8,7 +8,7 @@ import Portfolio from '../Portfolio/Portfolio.jsx';
 //import data from '../../data.json';
 import { useEffect } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import { fetchTitles, fetchUserProfile, updateBookmarked } from '../../config/firebase';
+import { fetchCategories, fetchTitles, fetchUserProfile, updateBookmarked, updateTitle } from '../../config/firebase';
 
 function Home() {
 
@@ -31,7 +31,6 @@ function Home() {
       .then((profileData) => {
         setProfile(profileData)
         setDisplayTrending(profileData.displayTrending)
-
       })
       .catch((error) => {
         console.log(error)
@@ -45,19 +44,30 @@ function Home() {
             document.documentElement.classList.remove('dark')
         }
     }
-  },[profile])
+  },[profile]) //[profile] Quota exceeded.
 
   useEffect(() => {
     fetchTitles()
-    .then((data) => {
-      setItems(data)
-    })
-    .catch((error) => {
-      console.log("Error loading titles: " + error)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
+      .then((data) => {
+        setItems(data)
+      })
+      .catch((error) => {
+        console.log("Error loading titles: " + error)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
+
+  const [categories, setCategories] = useState("");
+  useEffect(() => {
+    fetchCategories()
+        .then((data) =>{
+            setCategories(data)
+        })
+        .catch((error) => {
+            console.log("Error fetching categories "+ error)
+        })
   }, [])
 
   const changeFilter = (filter) => setFilter(filter);
@@ -104,6 +114,7 @@ function Home() {
             changeSearch={changeSearch}
             changeBookmarked={changeBookmarked}
             displayTrending={displayTrending}
+            categories={categories}
           />
         </div>
       </div>

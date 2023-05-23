@@ -23,6 +23,12 @@
     w-40
 }
 
+.edit-item-recommended{
+    @apply
+    bg-gray-700 rounded-full opacity-80 w-7 h-7 
+    relative -top-24 -left-4 pl-2
+}
+
 @media only screen and (min-width: 650px) {
     .recommended-display{
         @apply grid

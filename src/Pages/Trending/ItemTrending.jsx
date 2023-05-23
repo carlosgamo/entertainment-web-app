@@ -11,7 +11,7 @@ const ItemTrending = ({item, changeBookmarked}) => {
     return (
         <>
             <div className="item-trending-container">
-                <img className="item-trending-image" src={item.thumbnail.trending.large}/>
+                <img className="item-trending-image" src={item.thumbnail.regular.medium}/>
                 <button className='icon-bookmark-trending'
                         onClick={()=> handleClick()}
                 >

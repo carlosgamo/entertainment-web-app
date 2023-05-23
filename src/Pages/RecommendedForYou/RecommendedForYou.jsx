@@ -1,7 +1,7 @@
 import ItemRecommended from './ItemRecommended';
 import './Recommended.css'
 
-const RecommendedForYou = ({data, profile, changeBookmarked}) => { 
+const RecommendedForYou = ({data, profile, changeBookmarked, categories}) => { 
     return(
         <>
             <div className='bg-white dark:bg-slate-800 pl-4 ml-2'>
@@ -10,7 +10,13 @@ const RecommendedForYou = ({data, profile, changeBookmarked}) => {
                 </div>
                 <div className='recommended-display'>
                     {data.map(item => (
-                        <ItemRecommended key={item.title} item={item} profile={profile} changeBookmarked={changeBookmarked}/>
+                        <ItemRecommended 
+                            key={item.title} 
+                            item={item} 
+                            profile={profile} 
+                            changeBookmarked={changeBookmarked}
+                            categories={categories}
+                        />
                     ))}
                  </div>
             </div>          

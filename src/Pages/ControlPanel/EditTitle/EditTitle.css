@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+label{
+    @apply
+    block mb-1 ml-1 text-sm font-medium text-gray-900 dark:text-white
+}
+
+.edit-title-container{
+    @apply
+    ml-2 mr-4
+    p-4
+    text-white bg-slate-400 dark:bg-slate-900 rounded-lg 
+    w-auto
+    h-auto
+}
+
+.edit-h1{
+    @apply
+    text-slate-600
+    dark:text-slate-50
+    flex justify-center items-center
+    pt-4
+    pb-4
+}
+
+.edit-input{
+    @apply
+    bg-gray-50
+    border border-gray-300 
+    text-gray-900 text-sm 
+    rounded-md focus:ring-blue-500 focus:border-blue-500 
+    block p-1.5 mb-4
+    disabled:bg-slate-300
+    dark:bg-gray-700 
+    dark:border-gray-600 
+    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
+
+.thumbnail-button{
+    @apply
+    bg-slate-200 rounded-md p-0.5 mb-2
+    text-slate-600
+}
+
+.edit-title-grid{
+    @apply
+    grid gap-2 grid-cols-2 p-2
+}
+
+.title-updated-message{
+    @apply
+    text-green-700 
+    font-semibold
+    bg-slate-100
+    rounded-md
+    p-2.5
+    absolute bottom-4 right-6
+}
+
+@media only screen and (min-width: 800px) {
+    .edit-title-grid{
+        @apply
+        grid gap-2 grid-cols-6 p-2
+    }
+}
+
+

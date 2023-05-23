@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, where, addDoc, collection, getDocs, doc, updateDoc, setDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { getFirestore, query, where, addDoc, collection, getDocs, doc, updateDoc, setDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import titlesDatabase from '../data.json';
 
 import { 
@@ -60,55 +60,56 @@ export const loginWithGoogle = async() => {
 }
 
 //Register new user
-// export const registerNewUser = async({name, email, password}) => {
-//   try{ 
-//     const res = await createUserWithEmailAndPassword(auth, email, password)
-//     const user = res.user;
-//     await addDoc(collection(db, "users"), {
-//       uid: user.uid,
-//       name: name,
-//       authProvider: "local",
-//       email: email,
-//       isBookmarked: [],
-//       darkMode: false,
-//       displayTrending: true,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-const actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be in the authorized domains list in the Firebase Console.
-  url: 'https://gamo-entertainment-app.netlify.app/',
-  // This must be true.
-  handleCodeInApp: true,
-  dynamicLinkDomain: 'localhost.page.link'
+export const registerNewUser = async({name, email, password}) => {
+  try{ 
+    const res = await createUserWithEmailAndPassword(auth, email, password)
+    const user = res.user;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      name: name,
+      authProvider: "local",
+      email: email,
+      isBookmarked: [],
+      isAdmin: false,
+      darkMode: false,
+      displayTrending: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const registerNewUser = async({name, email, password}) => {
-  await sendSignInLinkToEmail(auth, email, actionCodeSettings)
-    .then(() => {
-      // The link was successfully sent. Inform the user.
-      // Save the email locally so you don't need to ask the user for it again
-      // if they open the link on the same device.
-      window.localStorage.setItem('emailForSignIn', email);
-      // ...
-    })
-    .catch((error) => {
-      console.log(error)
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ...
-    });
-}
+// const actionCodeSettings = {
+//   // URL you want to redirect back to. The domain (www.example.com) for this
+//   // URL must be in the authorized domains list in the Firebase Console.
+//   url: 'https://gamo-entertainment-app.netlify.app/',
+//   // This must be true.
+//   handleCodeInApp: true,
+//   dynamicLinkDomain: 'localhost.page.link'
+// };
+
+// export const registerNewUser = async({name, email, password}) => {
+//   await sendSignInLinkToEmail(auth, email, actionCodeSettings)
+//     .then(() => {
+//       // The link was successfully sent. Inform the user.
+//       // Save the email locally so you don't need to ask the user for it again
+//       // if they open the link on the same device.
+//       window.localStorage.setItem('emailForSignIn', email);
+//       // ...
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       // ...
+//     });
+// }
 
 
 export const fetchTitles = async() => {
   try {
     const titles = await getDocs(collection(db, "titles"));
-    const data = []
+    var data = []
     titles.forEach((title) => {
       data.push(title.data())
     });
@@ -117,6 +118,20 @@ export const fetchTitles = async() => {
     console.log("An error occured while fetching user data: " + error);
   }
 }
+
+export const fetchCategories = async() => {
+  try{
+    const categories = await getDocs(collection(db, "categories"));
+    var categoryData = []
+    categories.forEach((category) => {
+      categoryData.push(category.data())
+    })
+    return categoryData
+  } catch(error) {
+    console.log("Error loading categories: " + error)
+  }
+}
+
 
 export const fetchUserProfile = async(uid) => {
   try {
@@ -143,7 +158,32 @@ export const updateUserProfile = async(user, updatedProfile) => {
   }
 }
 
-//Updates bookmarked titles
+//Update individual title
+export const updateTitle = async (title) => {
+  const updatedTitle = {
+      id: title.id,
+      title: title.name,
+      thumbnail: title.thumbnail,
+      year: title.year,
+      category: title.category,
+      rating: title.rating,
+      isTrending: title.isTrending,
+  }
+
+  try {
+    const q = query(collection(db, "titles"), where("id", "==", title.id));
+    const titles = await getDocs(q);
+    titles.forEach(async (title) => {
+      const getTitle = doc(db, 'titles', title.id);
+      await setDoc(getTitle, updatedTitle);
+    })
+  } catch (error) {
+    console.log("Error updating the title, error: " + error)
+  }
+}
+
+
+//Updates bookmarked titles in user
 export const updateBookmarked = async (user, titleID, isBookmarked) => {
   try {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
@@ -165,7 +205,7 @@ export const updateBookmarked = async (user, titleID, isBookmarked) => {
   }
 }
 
-//TO IMPORT A NEW DATABASE FROM A JSON FILE
+//To import a new database from a JSON file
 export const loadNewDatabase = async() => {
   try{
     titlesDatabase.forEach(title => {

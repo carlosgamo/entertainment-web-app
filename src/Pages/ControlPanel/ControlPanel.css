@@ -16,7 +16,7 @@ h2{
     @apply
     relative
     p-6 mt-10 ml-auto mr-auto 
-    w-10/12 h-96
+    w-10/12 h-[30rem]
     text-white bg-slate-200 dark:bg-slate-900 rounded-lg 
 }
 
@@ -29,7 +29,16 @@ h2{
 
 .control-panel-button{
     @apply
+    text-white
     bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
+    hover:text-slate-800
+    rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-4 pr-4 ml-8 mt-2
+}
+
+.add-title-button{
+    @apply
+    text-slate-800
+    bg-slate-200 hover:bg-sky-200 dark:hover:bg-sky-50
     hover:text-slate-800
     rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-4 pr-4 ml-8 mt-2
 }
