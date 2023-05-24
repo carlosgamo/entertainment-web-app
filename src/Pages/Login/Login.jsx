@@ -50,9 +50,11 @@ function Login() {
     return(
         <>
             <div className='bg-gradient-to-tr from-slate-400 flex h-screen'>
+                
                 <div className='login-container'>
+                    <div className='login-h1'>LOG IN</div>
                     <div className='login-title'>Entertainment App</div>
-                    <h1 className=''>Login</h1>
+                    
                         <Formik 
                             initialValues={{ email: "", password: ""}}
                             onSubmit={onSubmit}
@@ -60,16 +62,17 @@ function Login() {
                         >
                             {({values, handleSubmit, handleChange, errors, touched, handleBlur, isSubmitting}) => (
                                 <form onSubmit={handleSubmit}>
+                                    <div className='input-label'>Email</div>
                                     <input 
                                         type='text' 
-                                        placeholder='test@test.com' 
+                                        placeholder='Enter email' 
                                         className='input-login' 
                                         value={values.email} 
                                         onChange={handleChange}
                                         name='email'
                                         onBlur={handleBlur}
                                     />
-                                    <hr className='mb-2'/>
+                                    <div className='input-label'>Password</div>
                                     <input 
                                         type='password' 
                                         placeholder='Password' 
@@ -89,15 +92,14 @@ function Login() {
                                             errors.password && touched.password && errors.password
                                         }
                                     </div>
-                                    <hr/>
-                                    <button type='submit' disabled={isSubmitting} className='email-login-button'>Sign in</button>
-                                    <div className='mx-auto mt-2'>
+                                    
+                                    <button type='submit' disabled={isSubmitting} className='email-login-button mb-4'>Sign in</button>
+                                    <div className='flex justify-center'>
                                         Don't have an account?
                                         <button disabled={isSubmitting} className='email-sign-up-button' onClick={() => {navigate('/signup');}}>
                                             Sign up here
                                         </button>
                                     </div>
-                                    
                                 </form>
                             )}
                         </Formik>                    

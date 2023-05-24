@@ -27,13 +27,6 @@ const ItemRecommended = ({item, profile, changeBookmarked, categories}) => {
                             position="top center" closeOnDocumentClick>  
                             <EditTitle item={item} categories={categories}/>
                         </Popup>
-
-                        // <button className='bg-gray-700 rounded-full opacity-80 w-7 h-7 
-                        // relative -top-24 -left-4 pl-2'
-                        //     onClick={()=> console.log("Editing item: " + item.id)}
-                        // >
-                        //     <IconPencilEdit item={item} profile={profile}/>
-                        // </button>
                     : null
                 }
                 
