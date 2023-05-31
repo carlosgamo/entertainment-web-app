@@ -13,6 +13,7 @@ const Carousel = ({data, changeBookmarked}) => {
   };
 
   const moveNext = () => {
+    console.log(carousel.current)
     if (
       carousel.current !== null &&
       carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
@@ -39,8 +40,8 @@ const Carousel = ({data, changeBookmarked}) => {
     if (carousel !== null && carousel.current !== null) {
       carousel.current.scrollLeft = carousel.current.offsetWidth * currentIndex;
     }
-  //});
-     }, [currentIndex]);
+  // });
+  }, [currentIndex]);
 
   useEffect(() => {
     maxScrollWidth.current = carousel.current

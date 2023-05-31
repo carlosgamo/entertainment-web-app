@@ -4,9 +4,9 @@
 
 .login-container {
   @apply bg-white rounded-lg
-    justify-center 
-    m-auto pt-10 pl-3 pr-3 pb-10
-    w-11/12;
+    flex flex-col items-center justify-center 
+    m-auto pt-10 pl-4 pr-4 pb-10
+    w-auto;
 }
 
 .login-h1 {

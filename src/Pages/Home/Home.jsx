@@ -29,8 +29,13 @@ function Home() {
   useEffect(()=> {
     fetchUserProfile(user.uid)
       .then((profileData) => {
-        setProfile(profileData)
-        setDisplayTrending(profileData.displayTrending)
+        if(profileData){
+          setProfile(profileData)
+          setDisplayTrending(profileData.displayTrending)
+        }else{
+          console.log("Error loading user profile")
+        }
+
       })
       .catch((error) => {
         console.log(error)
@@ -43,8 +48,9 @@ function Home() {
             document.documentElement.classList.add('light')
             document.documentElement.classList.remove('dark')
         }
-    }
-  },[profile]) //[profile] Quota exceeded.
+      }
+  },[]) //[] To prevent Quota exceeded.
+
 
   useEffect(() => {
     fetchTitles()
@@ -90,6 +96,9 @@ function Home() {
 
   const changeBookmarked = (id) => {
     updateBookmarked(user, id, profile.isBookmarked.includes(id))
+      .then((tempProfile) => {
+        if (tempProfile){setProfile(tempProfile)}
+      })
       .catch((error) => {
           console.log("Error updating bookmkark -> " + error)
       })
@@ -110,6 +119,7 @@ function Home() {
           <Portfolio
             items={items}
             profile={profile}
+            setProfile={setProfile}
             filteredData={filteredData}
             changeSearch={changeSearch}
             changeBookmarked={changeBookmarked}

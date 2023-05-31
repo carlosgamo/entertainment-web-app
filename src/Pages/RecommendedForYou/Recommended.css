@@ -17,10 +17,22 @@
 .item-recommended{
     @apply
     rounded-md
-    pr-2
     text-gray-600
     dark:text-slate-400
-    w-40
+    w-44 h-44
+}
+
+.item-title{
+    @apply
+    text-slate-600 dark:text-slate-200 
+    text-base font-semibold
+}
+
+.icon-bookmark-item{
+    @apply
+    bg-gray-700 rounded-full 
+    opacity-80 w-7 h-7 
+    absolute top-2 right-3  pl-2 
 }
 
 .edit-item-recommended{

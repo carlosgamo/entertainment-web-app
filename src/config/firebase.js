@@ -145,6 +145,7 @@ export const fetchCategories = async () => {
 };
 
 export const fetchUserProfile = async (uid) => {
+  console.log("FETCH PROFILE")
   try {
     const q = query(collection(db, "users"), where("uid", "==", uid));
     const users = await getDocs(q);
@@ -210,6 +211,7 @@ export const updateBookmarked = async (user, titleID, isBookmarked) => {
         });
       }
     });
+    return fetchUserProfile(user.uid)
   } catch (error) {
     console.log("Error updating bookmark title" + error);
   }

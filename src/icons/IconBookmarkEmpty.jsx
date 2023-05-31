@@ -11,7 +11,7 @@ const IconBookMarkEmpty = ({item, profile}) => {
                 stroke="#FFF" 
                 strokeWidth="1.5" 
                 className="hover:fill-white opacity-100"
-                fill={profile ? (profile.isBookmarked.includes(item.id) ? "#fff" : "none") : "none"}
+                fill={profile && profile.isBookmarked ? (profile.isBookmarked.includes(item.id) ? "#fff" : "none") : "none"}
             />
         </svg>        
     )
