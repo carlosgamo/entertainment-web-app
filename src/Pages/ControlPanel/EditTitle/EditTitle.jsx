@@ -6,6 +6,9 @@ import { useState } from "react";
 import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/storage"
 
 const EditTitle = ({ item, categories }) => {
+
+  const MAX_FILE_SIZE = 1000000;
+
   const [messageVisible, setMessageVisible] = useState(false);
 
   const [uploadProgress, setUploadProgress] = useState("");
@@ -27,60 +30,57 @@ const EditTitle = ({ item, categories }) => {
   const onSubmit = async (
     { id, name, category, rating, year, isTrending, file, thumbnail },
     { setSubmitting, setErrors }
-  ) => {
-    // if (file.type != 'image/png' || 'image/jpg'){
-    //   alert("File NOT valid, only PNG or JPG allowed")
-    //   return
-    // }
-    const storage = getStorage();
-    const storageRef = ref(storage, `thumbnail/${id}.jpg`);
-    const metadata = {
-      contentType: "image/jpg",
-    };  
-    const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+    ) => {
 
-    uploadTask.on("state_changed", (snapshot) => {
-      const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-      setUploadProgress("Upload is " + progress + "% done")
-      
-      switch (snapshot.state) {
-        case "paused":
-          setUploadProgress("Upload is paused")
-          break;
-        case "running":
-          setUploadProgress("Upload is running");
-          break;
-      }
-    },
-    (error) => {
-      console.log(error)
-    },
-    () => {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        thumbnail = downloadURL
-        setUploadProgress("Upload complete!")
-        if (downloadURL){
-          setUploadedImage(downloadURL)
-
-          try {
-            const credentialUser = updateTitle({
-              id,
-              name,
-              category,
-              rating,
-              year,
-              isTrending,
-              thumbnail,
-            });
-            saveChangesMessage();
-          } catch (error) {
-            console.log(Error);
+      if (file){
+        console.log("THERE IS A FILE TO UPLOAD")
+        const storage = getStorage();
+        const storageRef = ref(storage, `thumbnail/${id}.jpg`);
+        const metadata = {
+          contentType: "image/jpg",
+        };  
+        const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+    
+        uploadTask.on("state_changed", (snapshot) => {
+          const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    
+          setUploadProgress("Upload is " + progress + "% done")
+          
+          switch (snapshot.state) {
+            case "paused":
+              setUploadProgress("Upload is paused")
+              break;
+            case "running":
+              setUploadProgress("Upload is running");
+              break;
           }
-        }
-      });
-    })
-
+        },
+        (error) => {
+          console.log(error)
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              thumbnail = downloadURL
+              setUploadProgress("Upload complete!")
+              if (downloadURL) setUploadedImage(downloadURL)
+              try {
+                updateTitle({
+                  id,
+                  name,
+                  category,
+                  rating,
+                  year,
+                  isTrending,
+                  thumbnail,
+                });
+              saveChangesMessage();
+            } catch (error) {
+              console.log(Error);
+            }
+            }
+          );
+        })
+      }
   };
 
   const validationSchema = Yup.object().shape({
@@ -89,19 +89,22 @@ const EditTitle = ({ item, categories }) => {
     category: Yup.string().trim().required("Category required"),
     rating: Yup.string().trim().required("Rating required"),
     year: Yup.number().required("Year required"),
-    file: Yup.mixed().test({
-                  message: "The file is too large. Max.9Kb", 
-                  test: (file) => {
-                          const sizeIsValid = file?.size < 9000; //MAX_FILE_SIZE
-                          return sizeIsValid;
-                        },                
-                  }).test({
-                    message: "Invalid format, only PNG/JPG/JPEG are valid.",
+    file: Yup.mixed()
+                  .test({
+                    message: "Only PNG/JPG/JPEG smaller than 1MB.",
                     test: (file) => {
-                          const formatIsValid = ((file?.type === 'image/jpg') ||
-                                                (file?.type === 'image/jpeg') ||
-                                                (file?.type === 'image/png'));
-                          return formatIsValid
+                          if (file){
+                            const formatIsValid = ((file?.type === 'image/jpg') ||
+                            (file?.type === 'image/jpeg') ||
+                            (file?.type === 'image/png'));
+                            const sizeIsValid = file?.size < MAX_FILE_SIZE;
+
+                            if(formatIsValid && sizeIsValid){
+                              return true
+                            }
+                          }else{
+                            return true
+                          }
                         },
                   })
   });
@@ -220,14 +223,14 @@ const EditTitle = ({ item, categories }) => {
                   />
                 </div>
                 <div className="trending-checkbox-container">
-                  <label htmlFor="title-isTrending">Trending</label>
+                  <label htmlFor="title-isTrending" className="pt-1">Trending</label>
                   <input
                     type="checkbox"
                     id="title-isTrending"
                     name="trending"
                     placeholder="Trending"
                     checked={values.isTrending}
-                    className="ml-6"
+                    className="trending-checkbox"
                     value={values.isTrending}
                     onChange={handleChange}
                     onClick={() =>

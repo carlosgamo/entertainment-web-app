@@ -18,6 +18,7 @@ function Home() {
   const [displayTrending, setDisplayTrending] = useState(true);
 
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const [filter, setFilter] = useState("all"); 
   const [searchValue, setSearchValue] = useState("");
@@ -49,8 +50,7 @@ function Home() {
             document.documentElement.classList.remove('dark')
         }
       }
-  },[]) //[] To prevent Quota exceeded.
-
+  },[])
 
   useEffect(() => {
     fetchTitles()
@@ -65,7 +65,6 @@ function Home() {
       })
   }, [])
 
-  const [categories, setCategories] = useState("");
   useEffect(() => {
     fetchCategories()
         .then((data) =>{
