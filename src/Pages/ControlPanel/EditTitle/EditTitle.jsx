@@ -33,12 +33,9 @@ const EditTitle = ({ item, categories }) => {
     ) => {
 
       if (file){
-        console.log("THERE IS A FILE TO UPLOAD")
         const storage = getStorage();
         const storageRef = ref(storage, `thumbnail/${id}.jpg`);
-        const metadata = {
-          contentType: "image/jpg",
-        };  
+        const metadata = {contentType: "image/jpg"};  
         const uploadTask = uploadBytesResumable(storageRef, file, metadata);
     
         uploadTask.on("state_changed", (snapshot) => {
@@ -59,7 +56,8 @@ const EditTitle = ({ item, categories }) => {
           console.log(error)
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
               thumbnail = downloadURL
               setUploadProgress("Upload complete!")
               if (downloadURL) setUploadedImage(downloadURL)
@@ -74,12 +72,27 @@ const EditTitle = ({ item, categories }) => {
                   thumbnail,
                 });
               saveChangesMessage();
-            } catch (error) {
-              console.log(Error);
-            }
+              } catch (error) {
+                console.log(Error);
+              }
             }
           );
         })
+      }else{
+        try {
+          updateTitle({
+            id,
+            name,
+            category,
+            rating,
+            year,
+            isTrending,
+            thumbnail,
+          });
+        saveChangesMessage();
+        } catch (error) {
+          console.log(Error);
+        }
       }
   };
 
@@ -90,23 +103,23 @@ const EditTitle = ({ item, categories }) => {
     rating: Yup.string().trim().required("Rating required"),
     year: Yup.number().required("Year required"),
     file: Yup.mixed()
-                  .test({
-                    message: "Only PNG/JPG/JPEG smaller than 1MB.",
-                    test: (file) => {
-                          if (file){
-                            const formatIsValid = ((file?.type === 'image/jpg') ||
-                            (file?.type === 'image/jpeg') ||
-                            (file?.type === 'image/png'));
-                            const sizeIsValid = file?.size < MAX_FILE_SIZE;
+              .test({
+                message: "Only PNG/JPG/JPEG smaller than 1MB.",
+                test: (file) => {
+                      if (file){
+                        const formatIsValid = ((file?.type === 'image/jpg') ||
+                        (file?.type === 'image/jpeg') ||
+                        (file?.type === 'image/png'));
+                        const sizeIsValid = file?.size < MAX_FILE_SIZE;
 
-                            if(formatIsValid && sizeIsValid){
-                              return true
-                            }
-                          }else{
-                            return true
-                          }
-                        },
-                  })
+                        if(formatIsValid && sizeIsValid){
+                          return true
+                        }
+                      }else{
+                        return true
+                      }
+                    },
+              })
   });
 
   return (
@@ -248,23 +261,30 @@ const EditTitle = ({ item, categories }) => {
                       type='file'
                       id="title-thumbnail-input"
                       name="thumbnail-input"
+                      className="input-file-thumbnail"
                       onChange={(event) => {
                         setFieldValue("file", event.currentTarget.files[0]);
                       }}
                 />
-                <div className="flex justify-center m-2 text-green-800 font-semibold">
+                <p className="input-helper-text">PNG, JPG or JPEG (MAX. 1MB).</p>
+                <div className="upload-progress">
                   {uploadProgress ? uploadProgress : null}
-                </div>                
-                {uploadedImage 
-                    ? <div>
-                        New Image:
-                        <img className="object-contain h-36 w-80" src={uploadedImage}/> 
-                      </div> 
-                    : <img
-                        className="object-contain h-36 w-80"
-                        src={values.thumbnail}
-                      />
-                }
+                </div>  
+                <div className="">
+                  {uploadedImage 
+                      ? <div>
+                          <p className="input-helper-text">New image:</p>
+                          <img className="thumbnail-preview-img" src={uploadedImage}/> 
+                        </div> 
+                      : <div>
+                          <p className="input-helper-text">Preview:</p>
+                          <img
+                              className="object-contain h-36 w-80 "
+                              src={values.thumbnail}
+                            />
+                        </div>
+                  }
+                </div>              
 
               </div>
 

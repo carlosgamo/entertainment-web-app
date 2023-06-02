@@ -61,8 +61,34 @@ label {
     font-semibold
     bg-slate-100
     rounded-md
-    p-2.5
+    p-2.5 mr-2
     absolute bottom-4 right-6;
+}
+
+.thumbnail-preview-img{
+  @apply
+  object-contain h-36 w-80
+}
+
+.upload-progress{
+  @apply
+  font-semibold
+  flex justify-center m-2 
+  text-green-800 
+  bg-slate-200 rounded-md
+}
+
+.input-file-thumbnail{
+  @apply
+  w-11/12 text-sm ml-2 p-1
+  text-gray-900 border border-gray-300 
+  rounded-md cursor-pointer bg-gray-50 
+  dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+}
+
+.input-helper-text{
+  @apply
+  mt-1 text-base text-gray-200 dark:text-gray-400 flex justify-center
 }
 
 @media only screen and (min-width: 1200px) {

@@ -8,7 +8,7 @@ import Portfolio from '../Portfolio/Portfolio.jsx';
 //import data from '../../data.json';
 import { useEffect } from 'react';
 import { useUserContext } from '../../context/UserContext';
-import { fetchCategories, fetchTitles, fetchUserProfile, updateBookmarked, updateTitle } from '../../config/firebase';
+import { fetchCategories, fetchTitles, fetchUserProfile, updateBookmarked} from '../../config/firebase';
 
 function Home() {
 
@@ -41,16 +41,19 @@ function Home() {
       .catch((error) => {
         console.log(error)
       })
-
-      if (profile) { // DARKMODE
-        if (profile.darkMode){
-            document.documentElement.classList.add('dark')
-        }else{
-            document.documentElement.classList.add('light')
-            document.documentElement.classList.remove('dark')
-        }
-      }
   },[])
+
+  
+  useEffect(() => { // DARKMODE
+    if (profile) { 
+      if (profile.darkMode){
+          document.documentElement.classList.add('dark')
+      }else{
+          document.documentElement.classList.add('light')
+          document.documentElement.classList.remove('dark')
+      }
+    }
+  }, [profile])
 
   useEffect(() => {
     fetchTitles()
