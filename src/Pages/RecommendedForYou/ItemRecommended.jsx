@@ -23,6 +23,9 @@ const ItemRecommended = ({item, profile, changeBookmarked, categories}) => {
                                  {/* {open ? 'Opened' : 'Closed'} */}
                             </button>  )}  
                             modal
+                            nested
+                            closeOnEscape
+                            lockScroll
                             position="top center" closeOnDocumentClick>  
                             <EditTitle item={item} categories={categories}/>
                         </Popup>

@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 label {
-  @apply block mb-1 ml-1 text-sm font-medium text-gray-900 dark:text-white;
+  @apply block ml-1 text-sm font-medium text-gray-900 dark:text-white;
 }
 
 .edit-title-container {
-  @apply ml-4 mr-6 mb-2
+  @apply 
+    ml-4 mr-6 pb-8
     p-4
     text-white bg-slate-400 dark:bg-slate-600 rounded-lg 
     w-auto
@@ -20,7 +21,7 @@ label {
     font-semibold
     text-lg
     /* flex justify-center items-center */
-    pl-4
+    pl-3
     pb-4;
 }
 
@@ -29,7 +30,7 @@ label {
     border border-gray-300 
     text-gray-900 text-sm 
     rounded-md focus:ring-blue-500 focus:border-blue-500 
-    block p-1.5 mb-4
+    block p-1.5 mb-2
     disabled:bg-slate-300
     dark:bg-gray-700 
     dark:border-gray-600 
@@ -42,7 +43,7 @@ label {
 }
 
 .edit-title-grid {
-  @apply grid gap-2 grid-cols-2 p-2;
+  @apply grid gap-0 grid-cols-2 p-2;
 }
 
 .trending-checkbox-container {
@@ -67,7 +68,8 @@ label {
 
 .thumbnail-preview-img{
   @apply
-  object-contain h-36 w-80
+  m-auto rounded-md object-cover
+   h-36 w-60
 }
 
 .upload-progress{
@@ -100,8 +102,4 @@ label {
     @apply
     mt-6
   }
-
-
-
-
 }

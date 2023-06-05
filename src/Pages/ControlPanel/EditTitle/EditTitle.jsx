@@ -279,7 +279,7 @@ const EditTitle = ({ item, categories }) => {
                       : <div>
                           <p className="input-helper-text">Preview:</p>
                           <img
-                              className="object-contain h-36 w-80 "
+                              className="thumbnail-preview-img"
                               src={values.thumbnail}
                             />
                         </div>
@@ -291,7 +291,7 @@ const EditTitle = ({ item, categories }) => {
               <button
                 type="submit"
                 // disabled={dirty}
-                className="control-panel-button absolute bottom-4 right-8"
+                className="control-panel-button absolute bottom-4 right-12"
               >
                 Save changes
               </button>
@@ -302,7 +302,7 @@ const EditTitle = ({ item, categories }) => {
               ) : null}
               <button
                 type="button"
-                className="control-panel-button absolute top-6 right-12 "
+                className="control-panel-button absolute top-4 right-12"
                 onClick={() => addNewTitle()}
               >
                 New title
