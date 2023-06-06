@@ -25,8 +25,10 @@ const ItemRecommended = ({item, profile, changeBookmarked, categories}) => {
                             modal
                             nested
                             closeOnEscape
-                            lockScroll
-                            position="top center" closeOnDocumentClick>  
+                            // lockScroll
+                            repositionOnResize
+                            closeOnDocumentClick
+                            position="top" >  
                             <EditTitle item={item} categories={categories}/>
                         </Popup>
                     : null
