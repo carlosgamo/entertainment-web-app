@@ -300,13 +300,13 @@ const EditTitle = ({ item, categories }) => {
                   Title updated successfully!
                 </div>
               ) : null}
-              <button
+              {/* <button
                 type="button"
                 className="control-panel-button absolute top-4 right-12"
                 onClick={() => addNewTitle()}
               >
                 New title
-              </button>
+              </button> */}
             </form>
           )}
         </Formik>
