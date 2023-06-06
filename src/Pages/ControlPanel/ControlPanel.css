@@ -32,7 +32,7 @@ h2{
     text-white
     bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
     hover:text-slate-800
-    rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-4 pr-4 ml-8 mt-2
+    rounded-md border-2 border-slate-500 pt-1 pb-1.5 pl-2 pr-2
 }
 
 .add-title-button{
@@ -71,6 +71,6 @@ h2{
         @apply
         bg-slate-500 hover:bg-sky-200 dark:hover:bg-sky-50
         hover:text-slate-800
-        rounded-md border-2 border-slate-500 pt-1.5 pb-2 pl-4 pr-4 -mt-2
+        rounded-md border-2 border-slate-500 pt-1.5 pb-2 pl-4 pr-4
     }
 }

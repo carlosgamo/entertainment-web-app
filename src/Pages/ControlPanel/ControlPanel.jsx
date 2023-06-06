@@ -137,22 +137,11 @@ const ControlPanel = () => {
                             Display Trending
                         </p>
                     </div>
-                    {/* {profile && profile.isAdmin 
-                        ?
-                            <div>
-                                <h2>Manage titles</h2>
-                                <div className="text-slate-600">
-                                    <p className="control-panel-items">
-                                        <button className="add-title-button">Add new title</button>
-                                    </p>
-                                </div>
-                            </div>   
-                        : null} */}
                 </div>
-                <button className="control-panel-button absolute bottom-4 left-2" onClick={() => handleUpdateProfile()}>Save changes</button>
+                <button className="control-panel-button absolute bottom-4 left-4" onClick={() => handleUpdateProfile()}>Save changes</button>
                 {/* <button className="control-panel-button absolute bottom-20 right-6" onClick={() => loadNewDatabase()}>Load database</button> */}
                 <Link to="/">
-                    <button className="control-panel-button absolute bottom-4 right-6">Return to Home</button>
+                    <button className="control-panel-button absolute bottom-4 right-4">Return to Home</button>
                 </Link>
             </div>
         </>
