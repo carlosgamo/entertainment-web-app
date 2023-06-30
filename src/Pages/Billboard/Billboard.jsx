@@ -1,10 +1,18 @@
-import { useEffect, useState } from 'react';
-import ItemRecommended from './ItemRecommended';
-import './Recommended.css'
+import { useState } from 'react';
+import BillboardItem from './BillboardItem';
+import './Billboard.css'
 
-const RecommendedForYou = ({data, profile, changeBookmarked, categories}) => { 
+const Billboard = ({data, profile, sectionTitle, changeBookmarked, categories}) => { 
 
-    const titlesPerRow = 10;
+    console.log(data)
+
+    const TITLES_PER_ROW_MOBILE = 10;
+    const TITLES_PER_ROW_DESKTOP = 30;
+
+    const isMobile = window.innerWidth <= 768;
+    
+    const [titlesPerRow, setTitlesPerRow] = useState(() => isMobile === true ? TITLES_PER_ROW_MOBILE : TITLES_PER_ROW_DESKTOP)
+    
     const [next, setNext] = useState(titlesPerRow);
 
     const handleMoreTitles = () => {
@@ -13,13 +21,13 @@ const RecommendedForYou = ({data, profile, changeBookmarked, categories}) => {
 
     return(
         <>
-            <div className='bg-white dark:bg-slate-800 pl-4'>
+            <div className='bg-white dark:bg-neutral-900 pl-4'>
                 <div id="title" className='recommended-title'>
-                    Recommended for you
+                    {sectionTitle}
                 </div>
                 <div className='recommended-display'>
                     {data?.slice(0, next)?.map(item => (
-                        <ItemRecommended 
+                        <BillboardItem 
                             key={item.id} 
                             item={item} 
                             profile={profile} 
@@ -44,4 +52,4 @@ const RecommendedForYou = ({data, profile, changeBookmarked, categories}) => {
     )
 };
 
-export default RecommendedForYou;
+export default Billboard;

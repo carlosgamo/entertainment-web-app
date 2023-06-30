@@ -5,13 +5,13 @@
 body{
     @apply
     bg-white
-    dark:bg-slate-800
+    dark:bg-neutral-900
     overflow-x-hidden
 }
 
 
 @media only screen and (max-width: 500px) {
-    .main-app{
+    .portfolio{
         @apply
         w-screen
     }
@@ -20,13 +20,13 @@ body{
 @media only screen and (min-width: 500px) {
     .app-container{
         @apply
-        grid grid-cols-2
+        /* grid grid-cols-2 */
         h-screen w-screen
         bg-white
-        dark:bg-slate-800
+        dark:bg-neutral-900
     }
 
-    .main-app{
+    .portfolio{
         @apply
         absolute top-0 left-24
         overflow-hidden

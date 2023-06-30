@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { useUserContext } from '../../context/UserContext';
 import { fetchCategories, fetchTitles, fetchUserProfile, updateBookmarked} from '../../config/firebase';
 
+import "react-multi-carousel/lib/styles.css";
+
 function Home() {
 
   const {user} = useUserContext();
@@ -24,6 +26,7 @@ function Home() {
   const [searchValue, setSearchValue] = useState("");
   
   const [menuSelected, setMenuSelected] = useState(0);
+  const [sectionTitle, setSectionTitle] = useState("Recommended for you")
 
   const [loading, setLoading] = useState(true);
 
@@ -114,19 +117,21 @@ function Home() {
           <Menu
             changeFilter={changeFilter} filter={filter} 
             menuSelected={menuSelected} setMenuSelected={setMenuSelected}
+            sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
             profileName={profile.name}
           />
         </div>
-        <div className='main-app'>
+        <div className='portfolio'>
           <Portfolio
             items={items}
             profile={profile}
             setProfile={setProfile}
-            filteredData={filteredData}
+            filteredData={filteredData()}
             changeSearch={changeSearch}
             changeBookmarked={changeBookmarked}
             displayTrending={displayTrending}
             categories={categories}
+            sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
           />
         </div>
       </div>

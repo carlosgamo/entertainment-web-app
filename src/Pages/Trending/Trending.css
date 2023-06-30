@@ -1,12 +1,16 @@
+@tailwind base;
 @tailwind components;
+@tailwind utilities;
 
-.trending-container{
+/* .trending-container{
     @apply
     ml-2
     pl-2
     pr-6
-    w-11/12
-}
+    bg-red-300
+    w-full
+    h-36
+} */
 
 .item-trending-container{
     @apply
@@ -21,7 +25,7 @@
 
 .trending-title{
     @apply
-    text-slate-800 
+    text-neutral-900 
     dark:text-slate-100
     text-xl 
     pt-4
@@ -56,11 +60,11 @@
 }
 
 .icon-bookmark-trending{
-    @layer
+    @apply
     bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2
 }
 
-/* @media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) {
     .item-trending-container{
         @apply
         h-40
@@ -72,4 +76,4 @@
         h-full
         w-full
     }
-} */
+}

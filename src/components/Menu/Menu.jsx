@@ -7,9 +7,26 @@ import Logout from "../Logout.jsx"
 import './Menu.css';
 import { Link } from 'react-router-dom';
 
-const Menu = ({profileName, changeFilter, menuSelected, setMenuSelected}) => { 
+const Menu = ({profileName, changeFilter, menuSelected, setSectionTitle, setMenuSelected}) => { 
 
     function handleClick(number, filter){
+        switch (number) {
+            case 0:
+                setSectionTitle("Recommended for you")
+                break;
+            case 1:
+                setSectionTitle("Movies")
+                break;
+            case 2:
+                setSectionTitle("TV Series")
+                break;
+            case 3:
+                setSectionTitle("Bookmarked")
+                break;
+            default:
+                setSectionTitle("Recommended for you")
+                break;
+        }
         setMenuSelected(number)
         changeFilter(filter)
     }
@@ -26,7 +43,10 @@ const Menu = ({profileName, changeFilter, menuSelected, setMenuSelected}) => {
                     <button className="nav-icon"
                         onClick={() => handleClick(0,"all")}
                         >
-                        <IconNavHome menuSelected={menuSelected} navIconFillColor={navIconFillColor}/>
+                        <IconNavHome 
+                            menuSelected={menuSelected} 
+                            navIconFillColor={navIconFillColor}
+                        />
                     </button>
                     <button className="nav-icon" 
                         // onClick={() => changeFilter("Movie")}

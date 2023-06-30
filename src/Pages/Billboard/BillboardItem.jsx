@@ -1,12 +1,14 @@
 import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
 import IconPlay from '../../icons/IconPlay';
 import IconPencilEdit from '../../icons/IconPencilEdit';
-import './Recommended.css';
+import IconCategoryMovie from '../../icons/IconCategoryMovie';
+import IconCategoryTV from '../../icons/IconCategoryTV'
+import './Billboard.css';
 import Popup from 'reactjs-popup';
 import EditTitle from '../ControlPanel/EditTitle/EditTitle';
 import { useState } from 'react';
 
-const ItemRecommended = ({item, profile, changeBookmarked, categories}) => { 
+const BillboardItem = ({item, profile, changeBookmarked, categories}) => { 
 
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
@@ -38,17 +40,21 @@ const ItemRecommended = ({item, profile, changeBookmarked, categories}) => {
                                 closeOnDocumentClick
                                 position="top" 
                             >  
-                                <button className="rounded-lg bg-white absolute top-5 right-16 w-7 h-7" onClick={closeModal}>X</button>
+                                <button className="close-modal-button" onClick={closeModal}>X</button>
                                 <EditTitle item={item} categories={categories}/>
                             </Popup>
                         </div>
                     : null
                 }
                 
-                <div className="text-xs mt-1">
-                    {item.year} - {item.category} - {item.rating}
-                    <div className="item-title">{item.title}</div>
+                <div className="item-details">
+                    {item.year} - 
+                    <div className='mr-1 ml-0.5 mt-0.5'>
+                        {item.category === "Movie" ?<IconCategoryMovie/> : <IconCategoryTV/>} 
+                    </div>
+                    {item.category} - {item.rating}
                 </div>
+                <div className="item-title">{item.title}</div>
                 <button id='icon-play-overlay' 
                      className='relative -top-28 left-16 
                                 opacity-0 hover:opacity-60'>
@@ -59,4 +65,4 @@ const ItemRecommended = ({item, profile, changeBookmarked, categories}) => {
     )
  };
 
- export default ItemRecommended;
+ export default BillboardItem;

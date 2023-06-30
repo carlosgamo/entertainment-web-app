@@ -139,17 +139,7 @@ const EditTitle = ({ item, categories }) => {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
-          {({
-            values,
-            setFieldValue,
-            handleSubmit,
-            handleChange,
-            errors,
-            touched,
-            resetForm,
-            handleBlur,
-            dirty,
-          }) => (
+          {({ values, setFieldValue, handleSubmit, handleChange, errors, touched, resetForm, handleBlur, dirty}) => (
             <form onSubmit={handleSubmit}>
               <div className="mr-2 ml-2">
                 <label htmlFor="name">Name</label>
@@ -188,7 +178,7 @@ const EditTitle = ({ item, categories }) => {
                   <label htmlFor="title-category">Category</label>
                   <select
                     id="title-category"
-                    className="edit-input w-28"
+                    className="edit-input w-auto"
                     name="category"
                     value={values.category}
                     onChange={handleChange}
@@ -291,7 +281,7 @@ const EditTitle = ({ item, categories }) => {
               <button
                 type="submit"
                 // disabled={dirty}
-                className="control-panel-button absolute bottom-4 right-12"
+                className="control-panel-button edit-title-save-changes"
               >
                 Save changes
               </button>

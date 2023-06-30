@@ -145,7 +145,6 @@ export const fetchCategories = async () => {
 };
 
 export const fetchUserProfile = async (uid) => {
-  console.log("FETCH PROFILE")
   try {
     const q = query(collection(db, "users"), where("uid", "==", uid));
     const users = await getDocs(q);

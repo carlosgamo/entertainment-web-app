@@ -29,7 +29,7 @@ label {
     border border-gray-300 
     text-gray-900 text-sm 
     rounded-md focus:ring-blue-500 focus:border-blue-500 
-    block p-1.5 mb-2
+    block p-1 mb-2
     disabled:bg-slate-300
     dark:bg-gray-700 
     dark:border-gray-600 
@@ -62,7 +62,7 @@ label {
     bg-slate-100
     rounded-md
     p-2.5 mr-2
-    absolute bottom-4 right-6;
+    absolute bottom-2 right-8;
 }
 
 .thumbnail-preview-img{
@@ -90,6 +90,18 @@ label {
 .input-helper-text{
   @apply
   mt-1 text-base text-gray-200 dark:text-gray-400 flex justify-center
+}
+
+.edit-title-save-changes{
+  @apply
+  absolute bottom-3 right-12
+}
+
+@media only screen and (min-width: 600px) {
+  .edit-title-save-changes{
+    @apply
+    absolute bottom-4 right-24
+  }
 }
 
 @media only screen and (min-width: 1200px) {

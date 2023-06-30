@@ -3,7 +3,7 @@
 .menu{
     @apply
     bg-slate-200
-    dark:bg-gray-900
+    dark:bg-neutral-800
     h-14
 }
 
@@ -28,7 +28,7 @@
     w-7 h-7 rounded-full 
     mt-1 mr-3 ml-2
     text-xs justify-center
-    border-2 border-slate-800 hover:border-white
+    border-2 border-neutral-800 hover:border-white
     text-slate-200 hover:text-white
     bg-gradient-to-b from-sky-200 to-sky-800    
 }
@@ -42,8 +42,8 @@
 
 .logout-Button{
     @apply
-    text-slate-800 text-sm
-    dark:text-slate-400
+    text-neutral-800 text-sm
+    dark:text-neutral-400
     hover:text-red-800 hover:font-bold 
 }
 
