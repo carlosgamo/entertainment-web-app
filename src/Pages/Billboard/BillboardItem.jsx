@@ -16,7 +16,7 @@ const BillboardItem = ({item, profile, changeBookmarked, categories}) => {
     return (
         <>
             <div className="item-recommended relative">
-                <img className="rounded-lg w-full h-28" src={item.thumbnail}/>
+                <img className="rounded-md w-full h-28" src={item.thumbnail}/>
                 <button className="icon-bookmark-item"
                     onClick={()=> changeBookmarked(item.id) }
                 >

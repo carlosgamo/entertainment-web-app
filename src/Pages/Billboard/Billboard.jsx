@@ -4,8 +4,6 @@ import './Billboard.css'
 
 const Billboard = ({data, profile, sectionTitle, changeBookmarked, categories}) => { 
 
-    console.log(data)
-
     const TITLES_PER_ROW_MOBILE = 10;
     const TITLES_PER_ROW_DESKTOP = 30;
 
@@ -21,7 +19,7 @@ const Billboard = ({data, profile, sectionTitle, changeBookmarked, categories}) 
 
     return(
         <>
-            <div className='bg-white dark:bg-neutral-900 pl-4'>
+            <div className='container'>
                 <div id="title" className='recommended-title'>
                     {sectionTitle}
                 </div>

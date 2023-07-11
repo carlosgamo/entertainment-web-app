@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import IconSearch from '../icons/IconSearch';
 
-const SearchBar = ({changeSearch}) => { 
+const SearchBar = ({changeSearch, setDisplayTrending}) => { 
 
     const [clearButton, setClearButton] = useState(false);
 
     function handleChange(){
         changeSearch(searchBarInput.value.trim())
         if(searchBarInput.value === ""){
+            setDisplayTrending(true)
             setClearButton(false)
         }else{
+            setDisplayTrending(false)
             setClearButton(true)
         }
     }
@@ -21,7 +23,7 @@ const SearchBar = ({changeSearch}) => {
 
     return(
         <>
-            <div id="search-bar" className="bg-white dark:bg-neutral-900 text-lg 
+            <div id="search-bar" className="text-lg 
             h-16 flex pt-6 pl-6 w-full text-gray-800 dark:text-slate-200">
                 <IconSearch/> 
                 {clearButton 

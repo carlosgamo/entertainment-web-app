@@ -26,7 +26,7 @@ function Home() {
   const [searchValue, setSearchValue] = useState("");
   
   const [menuSelected, setMenuSelected] = useState(0);
-  const [sectionTitle, setSectionTitle] = useState("Recommended for you")
+  const [sectionTitle, setSectionTitle] = useState("RECOMMENDED FOR YOU")
 
   const [loading, setLoading] = useState(true);
 
@@ -46,7 +46,6 @@ function Home() {
       })
   },[])
 
-  
   useEffect(() => { // DARKMODE
     if (profile) { 
       if (profile.darkMode){
@@ -117,8 +116,9 @@ function Home() {
           <Menu
             changeFilter={changeFilter} filter={filter} 
             menuSelected={menuSelected} setMenuSelected={setMenuSelected}
+            displayTrending={displayTrending} setDisplayTrending={setDisplayTrending}
             sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
-            profileName={profile.name}
+            profile={profile}
           />
         </div>
         <div className='portfolio'>
@@ -129,7 +129,7 @@ function Home() {
             filteredData={filteredData()}
             changeSearch={changeSearch}
             changeBookmarked={changeBookmarked}
-            displayTrending={displayTrending}
+            displayTrending={displayTrending} setDisplayTrending={setDisplayTrending}
             categories={categories}
             sectionTitle={sectionTitle} setSectionTitle={setSectionTitle}
           />

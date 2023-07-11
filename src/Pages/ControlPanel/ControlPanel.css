@@ -17,7 +17,7 @@ h2{
     relative
     p-6 mt-10 ml-auto mr-auto 
     w-10/12 h-[30rem]
-    text-white bg-slate-200 dark:bg-slate-900 rounded-lg 
+    text-white bg-slate-200 dark:bg-backgroundSecondaryColor-inverted rounded-lg 
 }
 
 .control-panel-items{

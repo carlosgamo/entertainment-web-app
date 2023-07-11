@@ -1,26 +1,28 @@
 @tailwind components;
 
+.container{
+    @apply
+    pl-4 pr-8
+}
+
 .recommended-title{
     @apply
     font-semibold
-    text-neutral-700 
-    dark:text-slate-200
-    text-xl mb-4 pt-8 pl-2
+    text-backgroundColor-inverted
+    dark:text-backgroundColor-normal
+    text-xl mb-2 pt-2
 }
 
 .recommended-display{
-    @apply grid 
-    grid-cols-2
-    ml-2
-    w-11/12
+    @apply grid grid-cols-2
+    w-full
 }
 
 .item-recommended{
     @apply
-    rounded-md
-    text-gray-600
-    dark:text-neutral-400
-    w-52 h-44 pr-6
+    text-backgroundColor-inverted
+    dark:text-backgroundColor-normal
+    w-40 h-44
 }
 
 .item-details{
@@ -31,21 +33,22 @@
 
 .item-title{
     @apply
-    text-neutral-600 dark:text-slate-200 
+    text-h1Color-normal dark:text-h1Color-inverted 
     text-base font-semibold
 }
 
 .icon-bookmark-item{
     @apply
-    bg-neutral-700 rounded-full 
+    bg-backgroundColor-inverted
+    rounded-full 
     opacity-80 w-7 h-7 
-    absolute top-2 right-8  pl-2 
+    absolute top-1 right-2  pl-2 
 }
 
 .edit-item-recommended{
     @apply
-    bg-neutral-700 rounded-full opacity-80 w-7 h-7 
-    relative -top-24 -left-4 pl-2
+    bg-backgroundColor-inverted rounded-full 
+    opacity-80 w-7 h-7 pl-2
 }
 
 .close-modal-button{
@@ -57,7 +60,6 @@
     .recommended-display{
         @apply grid
         grid-cols-3
-        mr-20
     }
 
     .item-recommended{
@@ -78,44 +80,30 @@
     }
 }
 
-@media only screen and (min-width: 950px) {
+@media only screen and (min-width: 1100px) {
     .recommended-display{
         @apply grid 
         grid-cols-5
     }
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1300px) {
     .recommended-display{
         @apply grid 
         grid-cols-6
     }
 }
 
-@media only screen and (min-width: 1450px) {
+@media only screen and (min-width: 1650px) {
     .recommended-display{
         @apply grid 
         grid-cols-7
     }
 }
 
-@media only screen and (min-width: 1650px) {
-    .recommended-display{
-        @apply grid 
-        grid-cols-8
-    }
-}
-
-@media only screen and (min-width: 1800px) {
-    .recommended-display{
-        @apply grid 
-        grid-cols-9
-    }
-}
-
 @media only screen and (min-width: 1900px) {
     .recommended-display{
         @apply grid 
-        grid-cols-10
+        grid-cols-8
     }
 }

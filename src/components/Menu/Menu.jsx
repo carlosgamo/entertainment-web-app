@@ -7,20 +7,24 @@ import Logout from "../Logout.jsx"
 import './Menu.css';
 import { Link } from 'react-router-dom';
 
-const Menu = ({profileName, changeFilter, menuSelected, setSectionTitle, setMenuSelected}) => { 
+const Menu = ({profile, changeFilter, menuSelected, setSectionTitle, setMenuSelected, displayTrending, setDisplayTrending}) => { 
 
     function handleClick(number, filter){
         switch (number) {
             case 0:
+                setDisplayTrending(profile.displayTrending)
                 setSectionTitle("Recommended for you")
                 break;
             case 1:
+                setDisplayTrending(profile.displayTrending)
                 setSectionTitle("Movies")
                 break;
             case 2:
+                setDisplayTrending(profile.displayTrending)
                 setSectionTitle("TV Series")
                 break;
             case 3:
+                setDisplayTrending(false)
                 setSectionTitle("Bookmarked")
                 break;
             default:
@@ -69,7 +73,7 @@ const Menu = ({profileName, changeFilter, menuSelected, setSectionTitle, setMenu
                     >
                         <img className='rounded-full' />
                         <div className='nav-avatar-initial'>
-                            {profileName ? profileName.charAt(0).toUpperCase() : null}
+                            {profile ? profile.name.charAt(0).toUpperCase() : null}
                         </div>
                     </Link>
                     <Logout/>

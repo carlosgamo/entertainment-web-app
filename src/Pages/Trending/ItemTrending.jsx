@@ -1,11 +1,10 @@
 import IconBookMarkEmpty from '../../icons/IconBookmarkEmpty';
 import './Trending.css'
 
-const ItemTrending = ({item, changeBookmarked}) => { 
+const ItemTrending = ({item, profile, changeBookmarked}) => { 
 
     function handleClick() {
-        console.log(item.isBookmarked)
-        changeBookmarked(item.title)
+        changeBookmarked(item.id)
     }
 
     return (
@@ -15,15 +14,13 @@ const ItemTrending = ({item, changeBookmarked}) => {
                 <button className='icon-bookmark-trending'
                         onClick={()=> handleClick()}
                 >
-                    <IconBookMarkEmpty item={item}/>
+                    <IconBookMarkEmpty item={item} profile={profile}/>
                 </button>
-                    <div className="item-trending-info">{item.year} - {item.category}</div>
-                    <div className="item-trending-title">{item.title}</div>
-                    <div className='item-trending-rating'>
-                            {item.rating}
-                    </div>
-                    
-                
+                <div className="item-trending-info">{item.year} - {item.category}</div>
+                <div className="item-trending-title">{item.title}</div>
+                <div className='item-trending-rating'>
+                        {item.rating}
+                </div>
             </div>
         </>
     )

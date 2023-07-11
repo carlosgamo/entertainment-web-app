@@ -2,78 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .trending-container{
-    @apply
-    ml-2
-    pl-2
-    pr-6
-    bg-red-300
-    w-full
-    h-36
-} */
-
 .item-trending-container{
     @apply
-    flex-shrink-0
-    ml-4
-    rounded-md 
-    text-gray-400
-    relative
-    w-64
-    h-36
-}
-
-.trending-title{
-    @apply
-    text-neutral-900 
-    dark:text-slate-100
-    text-xl 
-    pt-4
-    mb-4 ml-4
+    text-h1Color-inverted
+    w-screen
+    h-40
 }
 
 .item-trending-title{
     @apply
     absolute bottom-2 left-4
-    text-slate-200
+    text-h1Color-inverted
     text-lg
 }
 
 .item-trending-info{
     @apply
-    text-xs text-cyan-100
+    text-xs text-textColor-normal
     absolute bottom-8 left-4
 }
 
 .item-trending-rating{
     @apply
     text-white text-opacity-70 font-medium flex justify-center
-    bg-white bg-opacity-20 rounded-full w-8 h-6 
-    absolute bottom-2 right-4
+    bg-white bg-opacity-40 rounded-full w-8 h-6 
+    absolute bottom-3 left-52
 }
 
 .item-trending-image{
     @apply
     rounded-lg
+    object-cover
     w-full
     h-full
 }
 
 .icon-bookmark-trending{
     @apply
-    bg-black rounded-full opacity-50 w-7 h-7 absolute top-4 right-4 pl-2
+    bg-black rounded-full 
+    opacity-80 w-7 h-7 relative top-4 left-52 pl-2
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (min-width: 600px) {
     .item-trending-container{
         @apply
+        w-64
         h-40
-        w-96
     }
 
-    .item-trending-image{
+    .icon-bookmark-trending{
         @apply
-        h-full
-        w-full
+        absolute top-2 right-32
     }
 }
