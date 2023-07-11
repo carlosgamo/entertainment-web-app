@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { login, loginWithGoogle } from '../../config/firebase';
+import { isSignedInWithEmail, login, loginWithGoogle } from '../../config/firebase';
 import { fetchUserProfile } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ function Login() {
         if (user){
             navigate('/home');
         }
+        isSignedInWithEmail()
     }, [user]);
 
     
